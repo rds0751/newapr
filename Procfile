@@ -1,0 +1,1 @@
+web: gunicorn aprroapp.wsgi --log-file -
