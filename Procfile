@@ -1,1 +1,1 @@
-web: gunicorn aprroapp.wsgi --log-file -
+web: gunicorn Approapp.wsgi --log-file -
