@@ -21,4 +21,10 @@ from . import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^loginReg/',include('loginReg.urls')),
+    # View URLs
+	url(r'^fobi/', include('fobi.urls.view')),
+
+	# Edit URLs
+	url(r'^fobi/', include('fobi.urls.edit')),
+	url(r'^fobi/plugins/form-handlers/db-store/', include('fobi.contrib.plugins.form_handlers.db_store.urls')),
 ]
