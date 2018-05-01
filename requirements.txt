@@ -19,3 +19,4 @@ Unidecode==1.0.22
 urllib3==1.22
 vishap==0.1.5
 webencodings==0.5.1
+whitenoise==3.3.1
