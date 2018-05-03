@@ -14,19 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url,include
-from django.contrib import admin
 from . import views
 
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^loginReg/', include('loginReg.urls')),
-    url(r'^$', include('core.urls')),
-    # View URLs
-	url(r'^fobi/', include('fobi.urls.view')),
-
-	# Edit URLs
-	url(r'^fobi/', include('fobi.urls.edit')),
-	url(r'^fobi/plugins/form-handlers/db-store/', include('fobi.contrib.plugins.form_handlers.db_store.urls')),
-
+    url(r'^$', views.home)
 ]
