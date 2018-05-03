@@ -1,5 +1,8 @@
 from django.core.exceptions import PermissionDenied
 from django.contrib.auth.decorators import user_passes_test
+from django.shortcuts import redirect
+
+from loginReg.models import UserProfile
 
 SATISFY_ANY = 'any'
 SATISFY_ALL = 'all'
@@ -114,3 +117,15 @@ def any_permission_required(perms, login_url=None, raise_exception=False):
     return permissions_required(perms, satisfy=SATISFY_ANY,
                                 login_url=login_url,
                                 raise_exception=raise_exception)
+
+
+def is_not_applicant(function):
+    def wrap(request, *args, **kwargs):
+        up  = UserProfile.objects.get(user=request.user)
+        if up.rio == 'applicant':
+            return redirect('/fobi')
+        else:
+            return function(request, *args, **kwargs)
+    wrap.__doc__ = function.__doc__
+    wrap.__name__ = function.__name__
+    return wrap

@@ -42,7 +42,7 @@ from .constants import (
     CALLBACK_FORM_VALID_AFTER_FORM_HANDLERS,
     CALLBACK_FORM_INVALID
 )
-from .decorators import permissions_required, SATISFY_ALL, SATISFY_ANY
+from .decorators import permissions_required, SATISFY_ALL, SATISFY_ANY, is_not_applicant
 from .dynamic import assemble_form_class
 from .form_importers import (
     ensure_autodiscover as ensure_importers_autodiscover,
@@ -422,6 +422,7 @@ edit_form_entry_permissions = [
 
 @login_required
 @permissions_required(satisfy=SATISFY_ANY, perms=edit_form_entry_permissions)
+@is_not_applicant
 def edit_form_entry(request, form_entry_id, theme=None, template_name=None):
     """Edit form entry.
 
