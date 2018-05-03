@@ -1,6 +1,7 @@
 bleach==2.1.3
 certifi==2018.4.16
 chardet==3.0.4
+dj-static==0.0.6
 Django==1.10
 django-autoslug-iplweb==1.9.4.dev0
 django-fobi==0.13.2
@@ -15,6 +16,7 @@ Pillow==5.1.0
 requests==2.18.4
 simplejson==3.14.0
 six==1.11.0
+static3==0.7.0
 Unidecode==1.0.22
 urllib3==1.22
 vishap==0.1.5
