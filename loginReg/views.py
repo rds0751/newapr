@@ -8,11 +8,14 @@ from .models import UserProfile
 
 def home(request):
     if request.user.is_authenticated:
-        up = UserProfile.objects.get(user=request.user)
-        args = {'type':up.rio}
+        ui = UserProfile.objects.get(user=request.user)
+        if ui.rio == "applicant":
+            return redirect('/fobi')
+        else:
+            return redirect('/fobi/forms/create')
     else:
         args = {}
-    return render(request,'loginReg/main_page.html', args)
+        return render(request,'loginReg/main_page.html', args)
 
 #def login_redirect(request):
     #return redirect('loginReg/login')
