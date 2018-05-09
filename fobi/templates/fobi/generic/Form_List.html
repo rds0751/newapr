@@ -1,0 +1,10 @@
+{% extends fobi_theme.base_view_template %}
+{% block content %}
+<body>
+    <h2>List of Forms</h2>
+    {% for i in forms %}
+    <a href="{% url 'fobi.view_form_entry' i.slug %}">{{ i.name }}</a>
+        <br>
+    {% endfor %}
+</body>
+{% endblock %}

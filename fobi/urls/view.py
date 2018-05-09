@@ -4,8 +4,8 @@ from fobi.views import (
     form_entry_submitted,
     view_form_entry,
     form_wizard_entry_submitted,
-    FormWizardView
-)
+    FormWizardView,
+    OrgListView, FormbyOrg)
 
 __title__ = 'fobi.urls.view'
 __author__ = 'Artur Barseghyan <artur.barseghyan@gmail.com>'
@@ -49,4 +49,6 @@ urlpatterns = [
     url(_(r'^wizard-view/(?P<form_wizard_entry_slug>[\w_\-]+)/submitted/$'),
         view=form_wizard_entry_submitted,
         name='fobi.form_wizard_entry_submitted'),
+    url(_(r'^orglist/$'), view=OrgListView, name='org_list'),
+    url(_(r'^formlist/(?P<org_id>[\w_\-]+)/$'), view=FormbyOrg, name='form_list'),
 ]

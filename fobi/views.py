@@ -24,6 +24,7 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 
 from nine import versions
 
+from loginReg.models import UserProfile
 from .base import (
     fire_form_callbacks,
     run_form_handlers,
@@ -249,7 +250,27 @@ dashboard_permissions = [
     'fobi.change_formentry',
     'fobi.delete_formentry',
 ]
+@login_required
+def FormbyOrg(request, org_id=None):
+    form_entries = FormEntry._default_manager.all()
+    list = []
+    for i in form_entries:
+        up = UserProfile.objects.get(user=i.user)
+        if up.oid == org_id:
+            list.append(i)
+    args = {'forms':list}
+    return render(request, 'fobi/generic/Form_List.html', args)
 
+@login_required
+def OrgListView(request):
+    form_entries = FormEntry._default_manager.all()
+    org_list = []
+    for i in form_entries:
+        up = UserProfile.objects.get(user=i.user)
+        if org_list.count(up.oid) ==0:
+            org_list.append(up.oid)
+    args = {'org':org_list}
+    return render(request,'fobi/generic/Org_List.html', args)
 
 @login_required
 @permissions_required(satisfy=SATISFY_ANY, perms=dashboard_permissions)
