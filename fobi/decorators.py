@@ -123,7 +123,7 @@ def is_not_applicant(function):
     def wrap(request, *args, **kwargs):
         up  = UserProfile.objects.get(user=request.user)
         if up.rio == 'applicant':
-            return redirect('/fobi')
+            return redirect('/fobi/orglist')
         else:
             return function(request, *args, **kwargs)
     wrap.__doc__ = function.__doc__

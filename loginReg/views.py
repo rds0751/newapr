@@ -10,7 +10,7 @@ def home(request):
     if request.user.is_authenticated:
         ui = UserProfile.objects.get(user=request.user)
         if ui.rio == "applicant":
-            return redirect('/fobi')
+            return redirect('/fobi/orglist')
         else:
             return redirect('/fobi/forms/create')
     else:
