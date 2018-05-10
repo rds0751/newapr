@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^$', include('core.urls')),
     # View URLs
 	url(r'^fobi/', include('fobi.urls.view')),
+	url(r'^sign/', include('hello_sign.urls', namespace='sign')),
 
 	# Edit URLs
 	url(r'^fobi/', include('fobi.urls.edit')),
