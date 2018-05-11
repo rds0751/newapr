@@ -12,9 +12,11 @@
 {% block navbar-menu-right-content %}
             <li class="active"><a href="{% url 'fobi.dashboard' %}">{% trans "Forms" %}</a></li>
             <li><a href="{% url 'fobi.form_wizards_dashboard' %}">{% trans "Wizards" %}</a></li>
+
 {% endblock navbar-menu-right-content %}
 
 {% block content %}
+	<input type=button value="Save as Pdf then click submit" onClick="javascript:window.print()">
     {% include fobi_theme.view_form_entry_ajax_template %}
 {% endblock content %}
 

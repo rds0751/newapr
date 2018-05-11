@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'applicant',
     'loginReg',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -82,6 +83,9 @@ INSTALLED_APPS = [
     'fobi.contrib.plugins.form_elements.content.content_image_url',
     'fobi.contrib.plugins.form_elements.content.content_text',
     'fobi.contrib.plugins.form_elements.content.content_video',
+
+    'fobi.contrib.plugins.form_elements.security.invisible_recaptcha',
+    'fobi.contrib.themes.bootstrap3.widgets.form_elements.invisible_recaptcha_bootstrap3_widget',
 
     # `django-fobi` form handlers
     'fobi.contrib.plugins.form_handlers.db_store',
@@ -176,3 +180,10 @@ STATIC_ROOT= os.path.join(BASE_DIR,'staticfiles')
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+FOBI_PLUGIN_INVISIBLE_RECAPTCHA_SITE_KEY = '$b_l&1(jhv6oiy-s$ah3zu)4or_)5pi)1l!ma#2_@35&tfjcfh'
+FOBI_PLUGIN_INVISIBLE_RECAPTCHA_SITE_SECRET = '$b_l&1(jhv6oiy-s$ah3zu)4or_)5pi)1l!ma#2_@35&tfjcfv'

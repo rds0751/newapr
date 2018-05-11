@@ -14,20 +14,10 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url,include
-from django.contrib import admin
 from . import views
-from wkhtmltopdf.views import PDFTemplateView
+
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^loginReg/', include('loginReg.urls')),
-    url(r'^$', include('core.urls'), name="home"),
-    # View URLs
-	url(r'^fobi/', include('fobi.urls.view')),
-    url(r'applicant/', include('applicant.urls')),
-
-	# Edit URLs
-	url(r'^fobi/', include('fobi.urls.edit')),
-	url(r'^fobi/plugins/form-handlers/db-store/', include('fobi.contrib.plugins.form_handlers.db_store.urls')),
-
+    url(r'^$', views.home, name='home'),
+    url(r'^uploads/form/$', views.model_form_upload, name='model_form_upload'),
 ]
