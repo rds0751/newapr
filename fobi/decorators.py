@@ -2,7 +2,7 @@ from django.core.exceptions import PermissionDenied
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import redirect
 
-from loginReg.models import UserProfile
+from core.models import UserProfile
 
 SATISFY_ANY = 'any'
 SATISFY_ALL = 'all'

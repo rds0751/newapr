@@ -19,8 +19,7 @@ from . import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^loginReg/', include('loginReg.urls')),
-    url(r'^$', include('core.urls'), name="home"),
+    url(r'^', include('core.urls'), name="home"),
     # View URLs
 	url(r'^fobi/', include('fobi.urls.view')),
     url(r'applicant/', include('applicant.urls')),

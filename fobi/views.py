@@ -24,7 +24,7 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 
 from nine import versions
 
-from loginReg.models import UserProfile
+from core.models import UserProfile
 from .base import (
     fire_form_callbacks,
     run_form_handlers,
