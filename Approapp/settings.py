@@ -91,6 +91,7 @@ INSTALLED_APPS = [
     'fobi.contrib.plugins.form_handlers.db_store',
     'fobi.contrib.plugins.form_handlers.http_repost',
     'fobi.contrib.plugins.form_handlers.mail',
+    'fobi.contrib.plugins.form_elements.security.recaptcha',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -196,3 +197,5 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 GOOGLE_RECAPTCHA_SECRET_KEY = '6Lfk_FgUAAAAAF8oOuqLQ_0kGpnEF_0CNzgP00mZ'
+RECAPTCHA_PUBLIC_KEY = '6Lfk_FgUAAAAALz35PN7m8PrvREBvMXHbbpBC9la'
+RECAPTCHA_PRIVATE_KEY = '6Lfk_FgUAAAAAF8oOuqLQ_0kGpnEF_0CNzgP00mZ'
