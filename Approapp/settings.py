@@ -187,3 +187,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 FOBI_PLUGIN_INVISIBLE_RECAPTCHA_SITE_KEY = '$b_l&1(jhv6oiy-s$ah3zu)4or_)5pi)1l!ma#2_@35&tfjcfh'
 FOBI_PLUGIN_INVISIBLE_RECAPTCHA_SITE_SECRET = '$b_l&1(jhv6oiy-s$ah3zu)4or_)5pi)1l!ma#2_@35&tfjcfv'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.zoho.com'
+EMAIL_HOST_USER = 'ripudaman@approapp.com' 
+EMAIL_HOST_PASSWORD = 'Smarty@24'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
