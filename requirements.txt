@@ -25,5 +25,5 @@ whitenoise==3.3.1
 django-recaptcha
 channels==1.1.8
 asgi_redis
-pypiwin32
+pypiwin32==220
 service_identity
