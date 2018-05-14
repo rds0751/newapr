@@ -11,7 +11,7 @@ class DocumentForm(forms.ModelForm):
     document = forms.FileField(widget=forms.FileInput())
     class Meta:
         model = Document
-        fields = ('executive', 'description', 'document', )
+        fields = ('description', 'document', )
     #
     # def save(self, commit=True):
     #     fn = self.cleaned_data['executive']

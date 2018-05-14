@@ -32,6 +32,8 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'core',
+    'messenger',
+    'channels',
     'applicant',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -199,3 +201,16 @@ EMAIL_USE_TLS = True
 GOOGLE_RECAPTCHA_SECRET_KEY = '6Lfk_FgUAAAAAF8oOuqLQ_0kGpnEF_0CNzgP00mZ'
 RECAPTCHA_PUBLIC_KEY = '6Lfk_FgUAAAAALz35PN7m8PrvREBvMXHbbpBC9la'
 RECAPTCHA_PRIVATE_KEY = '6Lfk_FgUAAAAAF8oOuqLQ_0kGpnEF_0CNzgP00mZ'
+
+REDIS_URL = os.environ.get('REDIS_HOST', 'localhost')
+
+CHANNELS_LAYERS = {
+    'default': {
+        'BACKEND': 'asgi_redis.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [REDIS_URL, ],
+        },
+        'ROUTING': 'config.routing.channel_routing',
+    }
+}
+
