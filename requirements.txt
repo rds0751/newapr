@@ -27,3 +27,4 @@ channels==1.1.8
 asgi_redis
 https://github.com/zakird/pyad/archive/master.zip
 service_identity
+dj-database-url==0.4.2
