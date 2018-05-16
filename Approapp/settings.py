@@ -22,6 +22,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '$b_l&1(jhv6oiy-s$ah3zu)4or_)5pi)1l!ma#2_@35&tfjcfv'
 
+SECRET_KEY = config('SECRET_KEY')
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -134,7 +136,6 @@ WSGI_APPLICATION = 'Approapp.wsgi.application'
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 import dj_database_url
-
 DATABASES = {
     'default': dj_database_url.config(
         default=config('postgres://qbhoialsiitwjk:a9c40c77e609002f7496b88a50425fd9fc2e12ce3a438519b08a26024b04afb4@ec2-23-21-121-220.compute-1.amazonaws.com:5432/dfc1vn6epml6nb')
