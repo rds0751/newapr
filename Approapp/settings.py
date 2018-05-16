@@ -138,7 +138,7 @@ WSGI_APPLICATION = 'Approapp.wsgi.application'
 import dj_database_url
 DATABASES = {
     'default': dj_database_url.config(
-        default=config('postgres://qbhoialsiitwjk:a9c40c77e609002f7496b88a50425fd9fc2e12ce3a438519b08a26024b04afb4@ec2-23-21-121-220.compute-1.amazonaws.com:5432/dfc1vn6epml6nb')
+        default=os.environ.get('DATABASE_URL')
     )
 }
 
