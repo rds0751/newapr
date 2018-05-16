@@ -29,3 +29,4 @@ https://github.com/zakird/pyad/archive/master.zip
 service_identity
 dj-database-url==0.4.2
 python-decouple
+psycopg2
