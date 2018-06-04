@@ -203,9 +203,11 @@ GOOGLE_RECAPTCHA_SECRET_KEY = '6Lfk_FgUAAAAAF8oOuqLQ_0kGpnEF_0CNzgP00mZ'
 RECAPTCHA_PUBLIC_KEY = '6Lfk_FgUAAAAALz35PN7m8PrvREBvMXHbbpBC9la'
 RECAPTCHA_PRIVATE_KEY = '6Lfk_FgUAAAAAF8oOuqLQ_0kGpnEF_0CNzgP00mZ'
 
-REDIS_URL = os.environ.get('REDIS_HOST', 'localhost')
+# REDIS setup
+REDIS_URL = os.environ.get('REDIS_URL', default=('localhost', 6379))
+# Channels configuration
 
-CHANNELS_LAYERS = {
+CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'asgi_redis.RedisChannelLayer',
         'CONFIG': {
@@ -214,4 +216,3 @@ CHANNELS_LAYERS = {
         'ROUTING': 'config.routing.channel_routing',
     }
 }
-
