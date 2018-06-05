@@ -204,15 +204,17 @@ RECAPTCHA_PUBLIC_KEY = '6Lfk_FgUAAAAALz35PN7m8PrvREBvMXHbbpBC9la'
 RECAPTCHA_PRIVATE_KEY = '6Lfk_FgUAAAAAF8oOuqLQ_0kGpnEF_0CNzgP00mZ'
 
 # REDIS setup
-REDIS_URL = os.environ.get('REDIS_URL', default=('localhost', 6379))
+REDIS_URL = os.environ.get('REDIS_URL', 'localhost')
 # Channels configuration
 
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'asgi_redis.RedisChannelLayer',
         'CONFIG': {
-            'hosts': [REDIS_URL, ],
+            'hosts': [(REDIS_URL, 6379)],
         },
         'ROUTING': 'config.routing.channel_routing',
     }
 }
+
+LOGIN_URL = '/login/'
