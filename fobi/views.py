@@ -266,7 +266,7 @@ def OrgListView(request):
     form_entries = FormEntry._default_manager.all()
     org_list = []
     for i in form_entries:
-        up = UserProfile.objects.get_or_create(user = i.user)
+        up = UserProfile.objects.get(user = i.user)
         if org_list.count(up.oid)==0:
             org_list.append(up.oid)
     args = {'org':org_list}
