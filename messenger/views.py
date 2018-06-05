@@ -6,51 +6,76 @@ from django.shortcuts import render
 from decorators import ajax_required
 from messenger.models import Message
 
-
+# "{% url 'send_message' %}"
 @login_required
 def inbox(request):
-    conversations = Message.get_conversations(user=request.user)
-    users_list = User.objects.filter(
-        is_active=True).exclude(username=request.user).order_by('username')
-    active_conversation = None
-    messages = None
-    if conversations:
-        conversation = conversations[0]
-        active_conversation = conversation['user'].username
-        messages = Message.objects.filter(user=request.user,
-                                          conversation=conversation['user'])
-        messages.update(is_read=True)
-        for conversation in conversations:
-            if conversation['user'].username == active_conversation:
-                conversation['unread'] = 0
+        conversations = Message.get_conversations(user=request.user)
+        users_list = User.objects.filter(
+            is_active=True).exclude(username=request.user).order_by('username')
+        active_conversation = None
+        messages = None
+        if conversations:
+            conversation = conversations[0]
+            active_conversation = conversation['user'].username
+            messages = Message.objects.filter(user=request.user,
+                                              conversation=conversation['user'])
+            messages.update(is_read=True)
+            for conversation in conversations:
+                if conversation['user'].username == active_conversation:
+                    conversation['unread'] = 0
 
-    return render(request, 'messenger/inbox.html', {
-        'messages': messages,
-        'conversations': conversations,
-        'users_list': users_list,
-        'active': active_conversation
+        return render(request, 'messenger/inbox.html', {
+            'messages': messages,
+            'conversations': conversations,
+            'users_list': users_list,
+            'active': active_conversation
         })
+
 
 
 @login_required
 def messages(request, username):
-    conversations = Message.get_conversations(user=request.user)
-    users_list = User.objects.filter(
-        is_active=True).exclude(username=request.user).order_by('username')
-    active_conversation = username
-    messages = Message.objects.filter(user=request.user,
-                                      conversation__username=username)
-    messages.update(is_read=True)
-    for conversation in conversations:
-        if conversation['user'].username == username:
-            conversation['unread'] = 0
+    if request.method=='GET':
+        conversations = Message.get_conversations(user=request.user)
+        users_list = User.objects.filter(
+            is_active=True).exclude(username=request.user).order_by('username')
+        active_conversation = username
+        messages = Message.objects.filter(user=request.user,
+                                          conversation__username=username)
+        messages.update(is_read=True)
+        for conversation in conversations:
+            if conversation['user'].username == username:
+                conversation['unread'] = 0
 
-    return render(request, 'messenger/inbox.html', {
-        'messages': messages,
-        'conversations': conversations,
-        'users_list': users_list,
-        'active': active_conversation
+        return render(request, 'messenger/inbox.html', {
+            'messages': messages,
+            'conversations': conversations,
+            'users_list': users_list,
+            'active': active_conversation
         })
+    else:
+        from_user = request.user
+        to_user = User.objects.get(username=username)
+        message = request.POST.get('message')
+        msg = Message.send_message(from_user, to_user, message)
+        conversations = Message.get_conversations(user=request.user)
+        users_list = User.objects.filter(
+            is_active=True).exclude(username=request.user).order_by('username')
+        active_conversation = username
+        messages = Message.objects.filter(user=request.user,
+                                          conversation__username=username)
+        messages.update(is_read=True)
+        for conversation in conversations:
+            if conversation['user'].username == username:
+                conversation['unread'] = 0
+
+        return render(request, 'messenger/inbox.html', {
+            'messages': messages,
+            'conversations': conversations,
+            'users_list': users_list,
+            'active': active_conversation
+        })
+
 
 
 @login_required
@@ -62,7 +87,9 @@ def delete(request):
 @login_required
 @ajax_required
 def send(request):
+    print(1)
     if request.method == 'POST':
+
         from_user = request.user
         to_user_username = request.POST.get('to')
         to_user = User.objects.get(username=to_user_username)
@@ -78,7 +105,7 @@ def send(request):
         return HttpResponse()
 
     else:
-        return HttpResponseBadRequest()
+        return HttpResponse("ho")
 
 
 @login_required

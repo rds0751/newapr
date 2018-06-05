@@ -19,8 +19,8 @@
     <script type="text/javascript">window.onload = $('.conversation').scrollTop($('.conversation')[0].scrollHeight);</script>
   </div>
   <div class="chat-box">
-    <img src="{{ user.profile.get_picture }}" class="picture">
-    <form role="form" method="post" action="{% url 'send_message' %}" id="send">
+{#    <img src="{{ user.profile.get_picture }}" class="picture">#}
+    <form role="form" method="post" action="" id="send">
       {% csrf_token %}
       <input type="hidden" name="to" value="{{ active }}">
       <input class="form-control" type="text" name="message" placeholder="Write a message..." maxlength="1000" autocomplete="off">
