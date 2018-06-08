@@ -15,6 +15,7 @@ from channels import Group
 class Message(models.Model):
     user = models.ForeignKey(User, related_name='+', on_delete=models.CASCADE)
     message = models.TextField(max_length=1000, blank=True)
+    doc = models.FileField(upload_to='sent_docs/',  blank=True)
     date = models.DateTimeField(auto_now_add=True)
     conversation = models.ForeignKey(
         User, related_name='+', on_delete=models.CASCADE)
@@ -29,13 +30,18 @@ class Message(models.Model):
         db_table = 'messages_message'
 
     def __str__(self):
-        return self.message
+        if self.message:
+            return self.message
+        else:
+            return self.doc
 
     @staticmethod
-    def send_message(from_user, to_user, message):
+    def send_message(from_user, to_user, message, doc):
         message = message[:1000]
+
         current_user_message = Message(from_user=from_user,
                                        message=message,
+                                       doc=doc,
                                        user=from_user,
                                        conversation=to_user,
                                        is_read=True)
@@ -43,23 +49,34 @@ class Message(models.Model):
         Message(from_user=from_user,
                 conversation=from_user,
                 message=message,
+                doc=doc,
                 user=to_user).save()
         Group('{}'.format(to_user.username)).send({
             'text': json.dumps({
                 'content': message,
+                'document':doc,
                 'receiver': to_user.username,
                 'sender': from_user.username,
                 'activity_type': 'message',
                 'message_id': current_user_message.id
             })
         })
-        Group("notifications").send({
-            'text': json.dumps({
-                'activity_type': 'message',
-                'receiver': to_user.username,
-                'sender': from_user.username
+        if doc is not None:
+            Group("notifications").send({
+                'text': json.dumps({
+                    'activity_type': 'document',
+                    'receiver': to_user.username,
+                    'sender': from_user.username
+                })
             })
-        })
+        else:
+            Group("notifications").send({
+                'text': json.dumps({
+                    'activity_type': 'message',
+                    'receiver': to_user.username,
+                    'sender': from_user.username
+                })
+            })
         return current_user_message
 
     @staticmethod

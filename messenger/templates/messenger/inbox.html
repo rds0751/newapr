@@ -20,9 +20,12 @@
   </div>
   <div class="chat-box">
 {#    <img src="{{ user.profile.get_picture }}" class="picture">#}
-    <form role="form" method="post" action="" id="send">
+    <form role="form" method="post" action="" id="send" enctype="multipart/form-data">
       {% csrf_token %}
       <input type="hidden" name="to" value="{{ active }}">
+
+              <input class="form-control" type="file" name="document" placeholder="Attach doc">
+
       <input class="form-control" type="text" name="message" placeholder="Write a message..." maxlength="1000" autocomplete="off">
     </form>
   </div>
