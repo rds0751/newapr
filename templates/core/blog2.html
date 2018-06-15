@@ -1,8 +1,9 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
 
-     <title>Hydro - Blog Page</title>
+     <title>ApproApp</title>
 <!-- 
 Hydro Template 
 http://www.templatemo.com/tm-509-hydro
@@ -14,12 +15,13 @@ http://www.templatemo.com/tm-509-hydro
      <meta name="author" content="">
      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-     <link rel="stylesheet" href="css/bootstrap.min.css">
-     <link rel="stylesheet" href="css/magnific-popup.css">
-     <link rel="stylesheet" href="css/font-awesome.min.css">
+     <link rel="stylesheet" href="{% static "core/css/bootstrap.min.css" %}">
+     <link rel="stylesheet" href="{% static "core/css/magnific-popup.css" %}">
+     <link rel="stylesheet" href="{% static "core/css/font-awesome.min.css" %}">
 
      <!-- MAIN CSS -->
-     <link rel="stylesheet" href="css/templatemo-style.css">
+     <link rel="stylesheet" href="{% static "core/css/templatemo-style.css" %}">
+     <link rel="shortcut icon" href="{% static "core/images/logo.ico" %}" />
 </head>
 <body>
 
@@ -43,24 +45,24 @@ http://www.templatemo.com/tm-509-hydro
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="index.html" class="navbar-brand">Hydro</a>
+                    <a href="/" class="navbar-brand">ApproApp</a>
                </div>
 
                <!-- MENU LINKS -->
                <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-nav-first">
-                         <li><a href="index.html#home" class="smoothScroll">Home</a></li>
-                         <li><a href="index.html#about" class="smoothScroll">About</a></li>
-                         <li><a href="index.html#blog" class="smoothScroll">Blog</a></li>
-                         <li><a href="index.html#work" class="smoothScroll">Our Work</a></li>
-                         <li><a href="index.html#contact" class="smoothScroll">Contacts</a></li>
+                         <li><a href="/" class="smoothScroll">Home</a></li>
+                         <li><a href="/" class="smoothScroll">About</a></li>
+                         <li><a href="/" class="smoothScroll">Blog</a></li>
+                         <li><a href="/" class="smoothScroll">Our Work</a></li>
+                         <li><a href="/" class="smoothScroll">Contacts</a></li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                         <li><a href="#"><i class="fa fa-facebook-square"></i></a></li>
-                         <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                         <li><a href="#"><i class="fa fa-instagram"></i></a></li>
-                         <li class="section-btn"><a href="#" data-toggle="modal" data-target="#modal-form">Sign in / Join</a></li>
+                         <li><a href="https://fb.com/theapproapp"><i class="fa fa-facebook-square"></i></a></li>
+                         <li><a href="https://twitter.com/theapproapp"><i class="fa fa-twitter"></i></a></li>
+                         <li><a href="https://www.linkedin.com/company/approapp1"><i class="fa fa-linkedin"></i></a></li>
+                         <li class="section-btn"><a href="/login" >Sign in / Join</a></li>
                     </ul>
                </div>
 
@@ -75,7 +77,7 @@ http://www.templatemo.com/tm-509-hydro
                <div class="row">
 
                     <div class="col-md-offset-1 col-md-5 col-sm-12">
-                         <h2>Do you Know What Thing Really Makes Artist Nowadays?</h2>
+                         <h2>Because the way you sign, is the way you live.</h2>
                     </div>
                     
                </div>
@@ -92,25 +94,32 @@ http://www.templatemo.com/tm-509-hydro
                          <!-- BLOG THUMB -->
                          <div class="blog-detail-thumb">
                               <div class="blog-image">
-                                   <img src="images/blog-detail-image.jpg" class="img-responsive" alt="Blog Image">
+                                   <img src="{% static "core/images/blog1.jpg" %}" class="img-responsive" alt="Blog Image">
                               </div>
-                              <h2>What makes you happy everyday?</h2>
-                              <p>Lorem ipsum dolor sit amet, maecenas eget vestibulum justo imperdiet, wisi risus purus augue vulputate voluptate neque, curabitur dolor libero sodales vitae elit massa. Lorem ipsum dolor sit amet, maecenas eget vestibulum justo imperdiet, wisi risus purus augue vulputate voluptate neque</p>
+                              <h2>DIGITAL CERTIFICATES</h2>
+                              <p>In order to understand digital signatures, it is very important to understand public key infrastructure. It is related to the idea of asymmetric-key cryptography. It includes message digest, digital signatures and encryption services which solves the purpose of integrity and authentication. Digital certificates are required to enable all the services.</p>
 
-                              <blockquote>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi, quisquam, aut, eum, natus excepturi impedit ipsa rerum ratione id dolores ducimus minus eos veniam similique.</blockquote>
+                              <blockquote>Digital certificates are small files on devices with file extension .cer mostly. It establishes the relationship between user and public. It is standardized by PKI. It is issued by some trusted party always.</blockquote>
 
-                              <p>Vivamus quis velit sed ante suscipit aliquam nec sed ex. Maecenas porta leo at mi suscipit congue. Donec ipsum metus, tristique eu leo ut, luctu Vivamus sit amet purus nec risus mollis tempor.</p>
+                              <p>The Certificate Authority (CA) are trusted bodies that can issue digital certificates.</p>
 
                               <div class="blog-ads">
                                    <h4>Blog Sample Advertising</h4>
                               </div>
                               
+                              <p>A digital certificate contains information such as:</p>
+
+
                               <ul>
-                                   <li>Brand Identity ipsum dolor eget vestibulum justo imper diet.</li>
-                                   <li>Social Marketing porta leo at mi suscipit congue. Donec ipsum metus, tristique leo luctus.</li>
-                                   <li>Wordpress Themes augue vulputate voluptate neque, curabitur dolor vitae massa.</li>
+                                   <li>1. User name</li>
+<li>2. Public key</li>
+<li>3. Serial no</li>
+<li>4. Other information</li>
+<li>5. Valid from and valid to</li>
+<li>6. Issuer name</li>
                               </ul>
-                              <p>Lorem ipsum dolor sit amet, maecenas eget vestibulum justo imperdiet, wisi risus purus augue vulputate voluptate neque, curabitur dolor libero sodales vitae elit massa.</p>
+                              <p>The Certificate Authority (CA) are trusted bodies that can issue digital certificates.
+Users send request to CA for digital certificate. After the CA verifies the information of the user ,it send certificate to the user keeping a copy for itself.</p>
                               <div class="blog-social-share">
                                    <h4>Share this article</h4>
                                    <a href="https://www.facebook.com/templatemo" class="btn btn-primary"><i class="fa fa-facebook"></i>facebook</a>
@@ -125,15 +134,19 @@ http://www.templatemo.com/tm-509-hydro
      </section>
 
 
-     <!-- FOOTER -->
+      <!-- FOOTER -->
      <footer data-stellar-background-ratio="0.5">
           <div class="container">
                <div class="row">
 
                     <div class="col-md-5 col-sm-12">
                          <div class="footer-thumb footer-info"> 
-                              <h2>Hydro Company</h2>
-                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                              <h2>ApproApp</h2>
+                              <p>The ApproApp protocol is a special purpose decentralized digital signature protocol. This
+protocol is intended to incentivize the signing of documents, approvals, and can be expanded to
+include any type of shareable and confidential documents. Applications will receive tokens for
+approving and exchanging data.</p>
+                              
                          </div>
                     </div>
 
@@ -142,7 +155,7 @@ http://www.templatemo.com/tm-509-hydro
                               <h2>Company</h2>
                               <ul class="footer-link">
                                    <li><a href="#">About Us</a></li>
-                                   <li><a href="#">Join our team</a></li>
+                                   <li><a href="https://manage.approapp.com/jobs">Join our team</a></li>
                                    <li><a href="#">Read Blog</a></li>
                                    <li><a href="#">Press</a></li>
                               </ul>
@@ -163,25 +176,25 @@ http://www.templatemo.com/tm-509-hydro
                     <div class="col-md-3 col-sm-4"> 
                          <div class="footer-thumb"> 
                               <h2>Find us</h2>
-                              <p>123 Grand Rama IX, <br> Krung Thep Maha Nakhon 10400</p>
+                              <p>Thapar University, <br> Nabha Road, Patiala 147004 - IN</p>
                          </div>
-                    </div>
+                    </div>                    
 
                     <div class="col-md-12 col-sm-12">
                          <div class="footer-bottom">
                               <div class="col-md-6 col-sm-5">
                                    <div class="copyright-text"> 
-                                        <p>Copyright &copy; 2017 Your Company</p>
+                                        <p>Copyright &copy; 2017 ApproApp</p>
                                    </div>
                               </div>
                               <div class="col-md-6 col-sm-7">
                                    <div class="phone-contact"> 
-                                        <p>Call us <span>(+66) 010-020-0340</span></p>
+                                        <p>Call us <span>(+91) 9870-132-133</span></p>
                                    </div>
                                    <ul class="social-icon">
-                                        <li><a href="#" class="fa fa-facebook-square" attr="facebook icon"></a></li>
-                                        <li><a href="#" class="fa fa-twitter"></a></li>
-                                        <li><a href="#" class="fa fa-instagram"></a></li>
+                                        <li><a href="https://www.facebook.com/theapproapp" class="fa fa-facebook-square" attr="facebook icon"></a></li>
+                                        <li><a href="https://www.twitter.com/theapproapp" class="fa fa-twitter"></a></li>
+                                        <li><a href="https://www.linkedin.com/company/approapp1" class="fa fa-linkedin"></a></li>
                                    </ul>
                               </div>
                          </div>
@@ -190,6 +203,7 @@ http://www.templatemo.com/tm-509-hydro
                </div>
           </div>
      </footer>
+
 
      <!-- MODAL -->
      <section class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -208,7 +222,7 @@ http://www.templatemo.com/tm-509-hydro
 
                                    <div class="col-md-12 col-sm-12">
                                         <div class="modal-title">
-                                             <h2>Hydro Co</h2>
+                                             <h2>ApproApp</h2>
                                         </div>
 
                                         <!-- NAV TABS -->
@@ -234,7 +248,7 @@ http://www.templatemo.com/tm-509-hydro
                                                        <input type="email" class="form-control" name="email" placeholder="Email" required>
                                                        <input type="password" class="form-control" name="password" placeholder="Password" required>
                                                        <input type="submit" class="form-control" name="submit" value="Submit Button">
-                                                       <a href="https://www.facebook.com/templatemo">Forgot your password?</a>
+                                                       <a href="https://www.facebook.com/theapproapp">Forgot your password?</a>
                                                   </form>
                                              </div>
                                         </div>
@@ -249,12 +263,12 @@ http://www.templatemo.com/tm-509-hydro
      </section>
 
      <!-- SCRIPTS -->
-     <script src="js/jquery.js"></script>
-     <script src="js/bootstrap.min.js"></script>
-     <script src="js/jquery.stellar.min.js"></script>
-     <script src="js/jquery.magnific-popup.min.js"></script>
-     <script src="js/smoothscroll.js"></script>
-     <script src="js/custom.js"></script>
+     <script src="{% static "core/js/jquery.js" %}"></script>
+     <script src="{% static "core/js/bootstrap.min.js" %}"></script>
+     <script src="{% static "core/js/jquery.stellar.min.js" %}"></script>
+     <script src="{% static "core/js/jquery.magnific-popup.min.js" %}"></script>
+     <script src="{% static "core/js/smoothscroll.js" %}"></script>
+     <script src="{% static "core/js/custom.js" %}"></script>
 
 </body>
 </html>
