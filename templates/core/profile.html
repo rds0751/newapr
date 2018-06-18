@@ -1,15 +1,110 @@
-{% extends 'base.html' %}
-{% block head %}
-    <title>profile</title>
-{% endblock%}
-{% block body %}
-   <div class="container">
-   <h1>profile</h1>
-   <p>username:{{ user.user}}</p>
-   <p>firstname:{{ user.user.first_name }}</p>
-   <p>lastname:{{ user.user.last_name }}</p>
-   <p>email:{{ user.user.email }}</p>
-   <p>oid:{{ user.oid }}</p>
-   <p>rio:{{ user.rio }}</p>
-   </div>
-{% endblock %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+     <title>Profile</title>
+<!--
+Hydro Template
+http://www.templatemo.com/tm-509-hydro
+-->
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <meta name="description" content="">
+     <meta name="keywords" content="">
+     <meta name="author" content="">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+     <link rel="stylesheet" href="{% static "core/css/bootstrap.min.css" %}">
+     <link rel="stylesheet" href="{% static "core/css/magnific-popup.css" %}">
+     <link rel="stylesheet" href="{% static "core/css/font-awesome.min.css" %}">
+
+     <!-- MAIN CSS -->
+     <link rel="stylesheet" href="{% static "core/css/templatemo-style.css" %}">
+     <link rel="shortcut icon" href="{% static "core/images/logo.ico" %}" />
+</head>
+<body>
+
+     <!-- PRE LOADER -->
+     <section class="preloader">
+          <div class="spinner">
+               <span class="spinner-rotate"></span>
+          </div>
+     </section>
+
+
+     <!-- MENU -->
+     <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
+          <div class="container">
+
+               <div class="navbar-header">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                    </button>
+
+                    <!-- lOGO TEXT HERE -->
+                    <a href="/" class="navbar-brand">ApproApp</a>
+               </div>
+
+               <!-- MENU LINKS -->
+               <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-nav-first">
+                         <li><a href="#home" class="smoothScroll">Home</a></li>
+                         <li><a href="#about" class="smoothScroll">About</a></li>
+                         <li><a href="#blog" class="smoothScroll">Blog</a></li>
+                         <li><a href="#work" class="smoothScroll">Our Work</a></li>
+                         <li><a href="#contact" class="smoothScroll">Contacts</a></li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                         <li><a href="https://fb.com/theapproapp"><i class="fa fa-facebook-square"></i></a></li>
+                         <li><a href="https://twitter.com/theapproapp"><i class="fa fa-twitter"></i></a></li>
+                         <li><a href="https://www.linkedin.com/company/approapp1"><i class="fa fa-linkedin"></i></a></li>
+                         <li class="section-btn"><a href="/profile" >{{ user.user}}</a></li>
+                         <li class="section-btn"><a href="/logout" >Logout</a></li>
+                    </ul>
+               </div>
+
+          </div>
+     </section>
+
+      <!-- HOME -->
+     <section id="home" data-stellar-background-ratio="0.5">
+          <div class="overlay"></div>
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-6 col-sm-12">
+                         <div class="home-info">
+                              <h1>profile</h1>
+                              <h2>username:{{ user.user}}</h2>
+                              <h2>firstname:{{ user.user.first_name }}</h2>
+                              <h2>lastname:{{ user.user.last_name }}</h2>
+                              <h2>email:{{ user.user.email }}</h2>
+                              <h2>oid:{{ user.oid }}</h2>
+                              <h2>rio:{{ user.rio }}</h2>
+                         </div>
+                    </div>
+
+               </div>
+          </div>
+     </section>
+
+
+
+
+
+
+
+ <!-- SCRIPTS -->
+     <script src="{% static "core/js/jquery.js" %}"></script>
+     <script src="{% static "core/js/bootstrap.min.js" %}"></script>
+     <script src="{% static "core/js/jquery.stellar.min.js" %}"></script>
+     <script src="{% static "core/js/jquery.magnific-popup.min.js" %}"></script>
+     <script src="{% static "core/js/smoothscroll.js" %}"></script>
+     <script src="{% static "core/js/custom.js" %}"></script>
+
+</body>
+</html>

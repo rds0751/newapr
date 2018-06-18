@@ -1,65 +1,137 @@
-{% extends 'base.html' %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Register</title>
+ <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <meta name="description" content="">
+     <meta name="keywords" content="">
+     <meta name="author" content="">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-{% block body %}
-<div class="jumbotron">
-    <h2><center>Register</center></h2>
-    {% if form.subject.errors %}
-    <ol>
-    {% for error in form.subject.errors %}
-        <li><strong>{{ error|escape }}</strong></li>
-    {% endfor %}
-    </ol>
-    {% endif %}
-    <div class="container">
-        <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="panel panel-login">
-                        <div class="panel-body">
-						    <div class="row">
-							    <div class="col-lg-12">
-                                    <form method="post">
-                                        <div class="form-group">
-                                            {% csrf_token %}
-                                            <div class="form-group">
-                                                {{ form.username }}
-                                            </div>
-                                             <div class="form-group">
-                                                {{ form.first_name }}
-                                            </div>
-                                             <div class="form-group">
-                                                {{ form.last_name }}
-                                            </div>
-                                            <div class="form-group">
-                                                {{ form.email }}
-                                            </div>
-                                            <div class="form-group">
-                                                {{ form.organisation_id }}
-                                            </div>
-                                            <div class="form-group">
-                                                {{ form.role_in_organisation }}
-                                            </div>
-                                            <div class="form-group">
-                                                {{ form.password1 }}
-                                            </div>
-                                            <div class="form-group">
-                                                {{ form.password2 }}
-                                            </div>
-                           	                    <div class="row">
-											        <div class="col-sm-6 col-sm-offset-3">
-                                                        <script src='https://www.google.com/recaptcha/api.js'></script>
-    <div class="g-recaptcha" data-sitekey="6Lfk_FgUAAAAALz35PN7m8PrvREBvMXHbbpBC9la"></div>
-												        <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
-                                                    </div>
-                                                </div>
-                                        </div>
-                                    </form>
-                                    <a href="/login">Register</a>
-                                </div>
-                            </div>
-                        </div>
+     <link rel="stylesheet" href="{% static "core/css/bootstrap.min.css" %}">
+     <link rel="stylesheet" href="{% static "core/css/magnific-popup.css" %}">
+     <link rel="stylesheet" href="{% static "core/css/font-awesome.min.css" %}">
+
+     <!-- MAIN CSS -->
+     <link rel="stylesheet" href="{% static "core/css/templatemo-style.css" %}">
+     <link rel="shortcut icon" href="{% static "core/images/logo.ico" %}" />
+</head>
+
+<body>
+
+     <!-- PRE LOADER -->
+     <section class="preloader">
+          <div class="spinner">
+               <span class="spinner-rotate"></span>
+          </div>
+     </section>
+
+     <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
+          <div class="container">
+
+               <div class="navbar-header">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                    </button>
+
+                    <!-- lOGO TEXT HERE -->
+                    <a href="/" class="navbar-brand">ApproApp</a>
+               </div>
+
+               <!-- MENU LINKS -->
+               <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-nav-first">
+                         <li><a href="#home" class="smoothScroll">Home</a></li>
+                         <li><a href="#about" class="smoothScroll">About</a></li>
+                         <li><a href="#blog" class="smoothScroll">Blog</a></li>
+                         <li><a href="#work" class="smoothScroll">Our Work</a></li>
+                         <li><a href="#contact" class="smoothScroll">Contacts</a></li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                         <li><a href="https://fb.com/theapproapp"><i class="fa fa-facebook-square"></i></a></li>
+                         <li><a href="https://twitter.com/theapproapp"><i class="fa fa-twitter"></i></a></li>
+                         <li><a href="https://www.linkedin.com/company/approapp1"><i class="fa fa-linkedin"></i></a></li>
+                         <li class="section-btn"><a href="/login" >Login</a></li>
+                    </ul>
+               </div>
+
+          </div>
+     </section>
+
+     <section id="contact" data-stellar-background-ratio="0.5">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-12 col-sm-12 mx-auto">
+                         <div class="section-title">
+                             <p></p>
+                             <p></p>
+                             <h2>Register</h2>
+                             <span class="line-bar">...</span>
+                              {% if form.subject.errors %}
+                                <ol>
+                                {% for error in form.subject.errors %}
+                                    <li><strong>{{ error|escape }}</strong></li>
+                                {% endfor %}
+                                </ol>
+                              {% endif %}
+                             </div>
                     </div>
-                </div>
-        </div>
-    </div>
-</div>
-{% endblock %}
+
+                   <!-- Registeration FORM HERE -->
+                   <form id="login-form" method="post">
+
+                           {% csrf_token %}
+                           <div class="col-md-12 col-sm-12">
+                               {{ form.username }}
+                           </div>
+                           <div class="col-md-12 col-sm-12">
+                               {{ form.first_name }}
+                           </div>
+                           <div class="col-md-12 col-sm-12">
+                               {{ form.last_name }}
+                           </div>
+                           <div class="col-md-12 col-sm-12">
+                               {{ form.email }}
+                           </div>
+                           <div class="col-md-12 col-sm-12">
+                               {{ form.organisation_id }}
+                           </div>
+                           <div class="col-md-12 col-sm-12">
+                               {{ form.role_in_organisation }}
+                           </div>
+                           <div class="col-md-12 col-sm-12">
+                               {{ form.password1 }}
+                           </div>
+                           <div class="col-md-12 col-sm-12">
+                               {{ form.password2 }}
+                           </div>
+                           <div class="row">
+                               <div class="col-sm-6 col-sm-offset-3">
+                                   <script src='https://www.google.com/recaptcha/api.js'></script>
+                                        <div class="g-recaptcha center" data-sitekey="6Lfk_FgUAAAAALz35PN7m8PrvREBvMXHbbpBC9la">
+
+                                        </div>
+                                   <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+                               </div>
+                           </div>
+                       </div>
+                   </form>
+               </div>
+          </div>
+
+<!-- SCRIPTS -->
+     <script src="{% static "core/js/jquery.js" %}"></script>
+     <script src="{% static "core/js/bootstrap.min.js" %}"></script>
+     <script src="{% static "core/js/jquery.stellar.min.js" %}"></script>
+     <script src="{% static "core/js/jquery.magnific-popup.min.js" %}"></script>
+     <script src="{% static "core/js/smoothscroll.js" %}"></script>
+     <script src="{% static "core/js/custom.js" %}"></script>
+
+</body>
+</html>
