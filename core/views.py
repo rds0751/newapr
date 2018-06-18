@@ -9,6 +9,17 @@ from .models import UserProfile
 def home(request):
     return render(request, 'core/index.html')
 
+def blog1(request):
+    return render(request, 'core/blog1.html')
+
+def blog2(request):
+    return render(request, 'core/blog2.html')
+
+def blog3(request):
+    return render(request, 'core/blog3.html')
+
+def blog4(request):
+    return render(request, 'core/blog4.html')
 
 def mainpage(request):
     if request.user.is_authenticated:

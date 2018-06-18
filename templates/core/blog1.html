@@ -1,0 +1,274 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+     <title>ApproApp</title>
+<!-- 
+Hydro Template 
+http://www.templatemo.com/tm-509-hydro
+-->
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <meta name="description" content="">
+     <meta name="keywords" content="">
+     <meta name="author" content="">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+     <link rel="stylesheet" href="{% static "core/css/bootstrap.min.css" %}">
+     <link rel="stylesheet" href="{% static "core/css/magnific-popup.css" %}">
+     <link rel="stylesheet" href="{% static "core/css/font-awesome.min.css" %}">
+
+     <!-- MAIN CSS -->
+     <link rel="stylesheet" href="{% static "core/css/templatemo-style.css" %}">
+     <link rel="shortcut icon" href="{% static "core/images/logo.ico" %}" />
+</head>
+<body>
+
+     <!-- PRE LOADER -->
+     <section class="preloader">
+          <div class="spinner">
+               <span class="spinner-rotate"></span>
+          </div>
+     </section>
+
+
+     <!-- MENU -->
+     <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
+          <div class="container">
+
+               <div class="navbar-header">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                    </button>
+
+                    <!-- lOGO TEXT HERE -->
+                    <a href="/" class="navbar-brand">ApproApp</a>
+               </div>
+
+               <!-- MENU LINKS -->
+               <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-nav-first">
+                         <li><a href="/" class="smoothScroll">Home</a></li>
+                         <li><a href="/" class="smoothScroll">About</a></li>
+                         <li><a href="/" class="smoothScroll">Blog</a></li>
+                         <li><a href="/" class="smoothScroll">Our Work</a></li>
+                         <li><a href="/" class="smoothScroll">Contacts</a></li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                         <li><a href="https://fb.com/theapproapp"><i class="fa fa-facebook-square"></i></a></li>
+                         <li><a href="https://twitter.com/theapproapp"><i class="fa fa-twitter"></i></a></li>
+                         <li><a href="https://www.linkedin.com/company/approapp1"><i class="fa fa-linkedin"></i></a></li>
+                         <li class="section-btn"><a href="/login" >Sign in / Join</a></li>
+                    </ul>
+               </div>
+
+          </div>
+     </section>
+
+
+     <!-- BLOG HEADER -->
+     <section id="blog-header" data-stellar-background-ratio="0.5">
+          <div class="overlay"></div>
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-offset-1 col-md-5 col-sm-12">
+                         <h2>The way you sign, is the way you live.</h2>
+                    </div>
+                    
+               </div>
+          </div>
+     </section>
+
+
+     <!-- BLOG DETAIL -->
+     <section id="blog-detail" data-stellar-background-ratio="0.5">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-offset-1 col-md-10 col-sm-12">
+                         <!-- BLOG THUMB -->
+                         <div class="blog-detail-thumb">
+                              <div class="blog-image">
+                                   <img src="{% static "core/images/blog1.jpg" %}" class="img-responsive" alt="Blog Image">
+                              </div>
+                              <h2>DIGITAL CERTIFICATES</h2>
+                              <p>In order to understand digital signatures, it is very important to understand public key infrastructure. It is related to the idea of asymmetric-key cryptography. It includes message digest, digital signatures and encryption services which solves the purpose of integrity and authentication. Digital certificates are required to enable all the services.</p>
+
+                              <blockquote>Digital certificates are small files on devices with file extension .cer mostly. It establishes the relationship between user and public. It is standardized by PKI. It is issued by some trusted party always.</blockquote>
+
+                              <p>The Certificate Authority (CA) are trusted bodies that can issue digital certificates.</p>
+
+                              <div class="blog-ads">
+                                   <h4>Blog Sample Advertising</h4>
+                              </div>
+                              
+                              <p>A digital certificate contains information such as:</p>
+
+
+                              <ul>
+                                   <li>1. User name</li>
+<li>2. Public key</li>
+<li>3. Serial no</li>
+<li>4. Other information</li>
+<li>5. Valid from and valid to</li>
+<li>6. Issuer name</li>
+                              </ul>
+                              <p>The Certificate Authority (CA) are trusted bodies that can issue digital certificates.
+Users send request to CA for digital certificate. After the CA verifies the information of the user ,it send certificate to the user keeping a copy for itself.</p>
+                              <div class="blog-social-share">
+                                   <h4>Share this article</h4>
+                                   <a href="https://www.facebook.com/templatemo" class="btn btn-primary"><i class="fa fa-facebook"></i>facebook</a>
+                                   <a href="#" class="btn btn-success"><i class="fa fa-twitter"></i>twitter</a>
+                                   <a href="#" class="btn btn-danger"><i class="fa fa-google-plus"></i>google plus</a>
+                              </div>
+                         </div>
+                    </div>
+                    
+               </div>
+          </div>
+     </section>
+
+
+      <!-- FOOTER -->
+     <footer data-stellar-background-ratio="0.5">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-5 col-sm-12">
+                         <div class="footer-thumb footer-info"> 
+                              <h2>ApproApp</h2>
+                              <p>The ApproApp protocol is a special purpose decentralized digital signature protocol. This
+protocol is intended to incentivize the signing of documents, approvals, and can be expanded to
+include any type of shareable and confidential documents. Applications will receive tokens for
+approving and exchanging data.</p>
+                              
+                         </div>
+                    </div>
+
+                    <div class="col-md-2 col-sm-4"> 
+                         <div class="footer-thumb"> 
+                              <h2>Company</h2>
+                              <ul class="footer-link">
+                                   <li><a href="#">About Us</a></li>
+                                   <li><a href="https://manage.approapp.com/jobs">Join our team</a></li>
+                                   <li><a href="#">Read Blog</a></li>
+                                   <li><a href="#">Press</a></li>
+                              </ul>
+                         </div>
+                    </div>
+
+                    <div class="col-md-2 col-sm-4"> 
+                         <div class="footer-thumb"> 
+                              <h2>Services</h2>
+                              <ul class="footer-link">
+                                   <li><a href="#">Pricing</a></li>
+                                   <li><a href="#">Documentation</a></li>
+                                   <li><a href="#">Support</a></li>
+                              </ul>
+                         </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-4"> 
+                         <div class="footer-thumb"> 
+                              <h2>Find us</h2>
+                              <p>Thapar University, <br> Nabha Road, Patiala 147004 - IN</p>
+                         </div>
+                    </div>                    
+
+                    <div class="col-md-12 col-sm-12">
+                         <div class="footer-bottom">
+                              <div class="col-md-6 col-sm-5">
+                                   <div class="copyright-text"> 
+                                        <p>Copyright &copy; 2017 ApproApp</p>
+                                   </div>
+                              </div>
+                              <div class="col-md-6 col-sm-7">
+                                   <div class="phone-contact"> 
+                                        <p>Call us <span>(+91) 9870-132-133</span></p>
+                                   </div>
+                                   <ul class="social-icon">
+                                        <li><a href="https://www.facebook.com/theapproapp" class="fa fa-facebook-square" attr="facebook icon"></a></li>
+                                        <li><a href="https://www.twitter.com/theapproapp" class="fa fa-twitter"></a></li>
+                                        <li><a href="https://www.linkedin.com/company/approapp1" class="fa fa-linkedin"></a></li>
+                                   </ul>
+                              </div>
+                         </div>
+                    </div>
+                    
+               </div>
+          </div>
+     </footer>
+
+
+     <!-- MODAL -->
+     <section class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg">
+               <div class="modal-content modal-popup">
+
+                    <div class="modal-header">
+                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                         </button>
+                    </div>
+
+                    <div class="modal-body">
+                         <div class="container-fluid">
+                              <div class="row">
+
+                                   <div class="col-md-12 col-sm-12">
+                                        <div class="modal-title">
+                                             <h2>ApproApp</h2>
+                                        </div>
+
+                                        <!-- NAV TABS -->
+                                        <ul class="nav nav-tabs" role="tablist">
+                                             <li class="active"><a href="#sign_up" aria-controls="sign_up" role="tab" data-toggle="tab">Create an account</a></li>
+                                             <li><a href="#sign_in" aria-controls="sign_in" role="tab" data-toggle="tab">Sign In</a></li>
+                                        </ul>
+
+                                        <!-- TAB PANES -->
+                                        <div class="tab-content">
+                                             <div role="tabpanel" class="tab-pane fade in active" id="sign_up">
+                                                  <form action="#" method="post">
+                                                       <input type="text" class="form-control" name="name" placeholder="Name" required>
+                                                       <input type="telephone" class="form-control" name="telephone" placeholder="Telephone" required>
+                                                       <input type="email" class="form-control" name="email" placeholder="Email" required>
+                                                       <input type="password" class="form-control" name="password" placeholder="Password" required>
+                                                       <input type="submit" class="form-control" name="submit" value="Submit Button">
+                                                  </form>
+                                             </div>
+
+                                             <div role="tabpanel" class="tab-pane fade in" id="sign_in">
+                                                  <form action="#" method="post">
+                                                       <input type="email" class="form-control" name="email" placeholder="Email" required>
+                                                       <input type="password" class="form-control" name="password" placeholder="Password" required>
+                                                       <input type="submit" class="form-control" name="submit" value="Submit Button">
+                                                       <a href="https://www.facebook.com/theapproapp">Forgot your password?</a>
+                                                  </form>
+                                             </div>
+                                        </div>
+                                   </div>
+
+                              </div>
+                         </div>
+                    </div>
+
+               </div>
+          </div>
+     </section>
+
+     <!-- SCRIPTS -->
+     <script src="{% static "core/js/jquery.js" %}"></script>
+     <script src="{% static "core/js/bootstrap.min.js" %}"></script>
+     <script src="{% static "core/js/jquery.stellar.min.js" %}"></script>
+     <script src="{% static "core/js/jquery.magnific-popup.min.js" %}"></script>
+     <script src="{% static "core/js/smoothscroll.js" %}"></script>
+     <script src="{% static "core/js/custom.js" %}"></script>
+
+</body>
+</html>
