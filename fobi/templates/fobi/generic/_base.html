@@ -2,11 +2,20 @@
 <!DOCTYPE html>
 <html lang="en"{% block html-attributes %}{% endblock html-attributes %}>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <meta name="description" content="">
+     <meta name="keywords" content="">
+     <meta name="author" content="">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+     <link rel="stylesheet" href="{% static "core/css/bootstrap.min.css" %}">
+     <link rel="stylesheet" href="{% static "core/css/magnific-popup.css" %}">
+     <link rel="stylesheet" href="{% static "core/css/font-awesome.min.css" %}">
+
+     <!-- MAIN CSS -->
+     <link rel="stylesheet" href="{% static "core/css/templatemo-style.css" %}">
+     <link rel="shortcut icon" href="{% static "core/images/logo.ico" %}" />
 
     {% block favicon %}
     <link rel="shortcut icon" href="{% block favicon-image %}{% endblock favicon-image %}">
@@ -48,17 +57,17 @@
   {% block main-wrapper %}
 
     {% block navbar-wrapper %}
-    <div class="{% block navbar-class %}{% endblock navbar-class %}" role="navigation">
+  <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
+    <div class="{% block navbar-class %}{% endblock navbar-class %}">
       {% block navbar %}
       <div class="{% block navbar-container-class %}{% endblock navbar-container-class %}">
         {% block navbar-content %}
         {% block navbar-header %}
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+          <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon icon-bar"></span>
+            <span class="icon icon-bar"></span>
+            <span class="icon icon-bar"></span>
           </button>
           {% block dashboard-menu-item %}
           {% url 'fobi.dashboard' as fobi_dashboard_url %}
@@ -117,6 +126,7 @@
       </div><!-- /.container -->
       {% endblock navbar %}
     </div><!-- /.navbar -->
+  </section>
     {% endblock navbar-wrapper %}
 
     {% block main-content-wrapper %}
@@ -178,13 +188,6 @@
       <hr>
       {% endblock content-footer-separator %}
 
-      {% block footer-wrapper %}
-      <footer>
-        {% block footer %}
-        <p>{% block footer-content %}{{ fobi_theme.footer_text|safe }}{% endblock footer-content %}</p>
-        {% endblock footer %}
-      </footer>
-      {% endblock footer-wrapper %}
 
     </div><!--/.container-->
     {% endblock main-content-wrapper %}
@@ -203,5 +206,84 @@
     {% endfor %}
   {% endblock theme-javascripts %}
 
+    <!-- FOOTER -->
+     <footer data-stellar-background-ratio="0.5">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-5 col-sm-12">
+                         <div class="footer-thumb footer-info">
+                              <h2>ApproApp</h2>
+                              <p>The ApproApp protocol is a special purpose decentralized digital signature protocol. This
+protocol is intended to incentivize the signing of documents, approvals, and can be expanded to
+include any type of shareable and confidential documents. Applications will receive tokens for
+approving and exchanging data.</p>
+
+                         </div>
+                    </div>
+
+                    <div class="col-md-2 col-sm-4">
+                         <div class="footer-thumb">
+                              <h2>Company</h2>
+                              <ul class="footer-link">
+                                   <li><a href="#">About Us</a></li>
+                                   <li><a href="#">Join our team</a></li>
+                                   <li><a href="#">Read Blog</a></li>
+                                   <li><a href="#">Press</a></li>
+                              </ul>
+                         </div>
+                    </div>
+
+                    <div class="col-md-2 col-sm-4">
+                         <div class="footer-thumb">
+                              <h2>Services</h2>
+                              <ul class="footer-link">
+                                   <li><a href="#">Pricing</a></li>
+                                   <li><a href="#">Documentation</a></li>
+                                   <li><a href="#">Support</a></li>
+                              </ul>
+                         </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-4">
+                         <div class="footer-thumb">
+                              <h2>Find us</h2>
+                              <p>Thapar University, <br> Nabha Road, Patiala 147004 - IN</p>
+                         </div>
+                    </div>
+
+                    <div class="col-md-12 col-sm-12">
+                         <div class="footer-bottom">
+                              <div class="col-md-6 col-sm-5">
+                                   <div class="copyright-text">
+                                        <p>Copyright &copy; 2017 ApproApp</p>
+                                   </div>
+                              </div>
+                              <div class="col-md-6 col-sm-7">
+                                   <div class="phone-contact">
+                                        <p>Call us <span>(+91) 9870-132-133</span></p>
+                                   </div>
+                                   <ul class="social-icon">
+                                        <li><a href="https://www.facebook.com/theapproapp" class="fa fa-facebook-square" attr="facebook icon"></a></li>
+                                        <li><a href="https://www.twitter.com/theapproapp" class="fa fa-twitter"></a></li>
+                                        <li><a href="https://www.linkedin.com/company/approapp1" class="fa fa-linkedin"></a></li>
+                                   </ul>
+                              </div>
+                         </div>
+                    </div>
+
+               </div>
+          </div>
+     </footer>
+
+
+
+       <!-- SCRIPTS -->
+     <script src="{% static "core/js/jquery.js" %}"></script>
+     <script src="{% static "core/js/bootstrap.min.js" %}"></script>
+     <script src="{% static "core/js/jquery.stellar.min.js" %}"></script>
+     <script src="{% static "core/js/jquery.magnific-popup.min.js" %}"></script>
+     <script src="{% static "core/js/smoothscroll.js" %}"></script>
+     <script src="{% static "core/js/custom.js" %}"></script>
   </body>
 </html>
