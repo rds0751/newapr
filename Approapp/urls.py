@@ -30,7 +30,7 @@ urlpatterns = [
 	# Edit URLs
 	url(r'^fobi/', include('fobi.urls.edit')),
 	url(r'^fobi/plugins/form-handlers/db-store/', include('fobi.contrib.plugins.form_handlers.db_store.urls')),
-    url(r'msg/', include('messenger.urls')),    
+    url(r'msg/', include('messenger.urls'), name="msg"),    
 
 ]
 if settings.DEBUG:

@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^blog2$', views.blog2),
     url(r'^blog3$', views.blog3),
     url(r'^blog4$', views.blog4),
+    url(r'^products$', views.products),
     url(r'^mainpage/', views.mainpage),
     url('^login/$', login, {'template_name': 'core/login.html'}, name='login'),
     url('^logout/$', logout, {'template_name': 'core/logout.html'}, name='logout'),
