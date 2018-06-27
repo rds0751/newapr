@@ -2,6 +2,8 @@ from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
 
 # from fobi.decorators import permissions_required, SATISFY_ALL, SATISFY_ANY
+from django.views.generic import DetailView
+
 from .....base import (
     get_form_handler_plugin_widget,
     get_form_wizard_handler_plugin_widget,
@@ -39,7 +41,13 @@ __all__ = (
 #    'db_store.delete_savedformdataentry',
 # ]
 
-
+def saved_form_data_entries_detailview(
+        request, form_entry_id=None, feid=None,
+        template_name="db_store/savedformdataentry_detail.html"):
+    entries = SavedFormDataEntry.objects.filter(form_entry__id=form_entry_id)
+    entry = entries.filter(id=feid)
+    context = {'entry' : entry}
+    return render(request, template_name, context)
 # @permissions_required(satisfy=SATISFY_ANY, perms=entries_permissions)
 @login_required
 def view_saved_form_data_entries(
