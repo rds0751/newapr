@@ -57,8 +57,8 @@ class AbstractSavedFormDataEntry(models.Model):
         :return string:
         """
         try:
-            headers = json.loads(self.form_data_headers)
-            data = json.loads(self.saved_data)
+            headers = json.loads(self.form_data_headers.encode().decode("utf-8"))
+            data = json.loads(self.saved_data.encode().decode("utf-8"))
             for key, value in data.items():
 
                 if isinstance(value, string_types):
