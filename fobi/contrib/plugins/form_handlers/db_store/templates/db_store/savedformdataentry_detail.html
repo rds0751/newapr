@@ -19,9 +19,6 @@
 {% endblock navbar-menu-content %}
 
 {% block content-wrapper %}
-    <div class="page-header">
-      <h1>{% trans "View form data" %}</h1>
-    </div>
 
     <div class="row">
       <div class="col-12 col-sm-12 col-lg-12">
@@ -30,34 +27,38 @@
           <h2 id="form_elements">{% trans "Saved form data" %}</h2>
         </div>
 
-        <div class="panel panel-default">
-          <div class="panel-body">
-
-            <table class="table table-striped db-store-saved-form-data-entry-table">
-              <thead>
-                <tr>
-                  <th>{% trans "Form" %}</th>
-                  <th>{% trans "Data" %}</th>
-                  <th>{% trans "Date" %}</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
                     {#<a href="{% url 'fobi.view_form_entry' entry.form_entry.slug %}">{{ entry.form_entry.name }}</a>#}
                     <p>{{ entry.form_entry.name }}</p>
-                  </td>
-                  <td class="content"><div>{{ entry.formatted_saved_data|safe }}</div></td>
-                  <td>{{ entry.created }}</td>
-                </tr>
-              </tbody>
-            </table>
+               <div>{{ entry.formatted_saved_data|safe }}</div>
+                {% if entry.approved %}
+                <p>Approval status:Approved</p>
+          {% else %}
+          <p>Approval status: Not approved</p>
+          <a href=""></a>
 
-          </div>
-        </div>
-      </div>
+<a href="approve"><button style="color: green">Approve</button></a>
+{% endif %}
     </div>
+    </div>
+    {% block content %}
+    <h1>New comment</h1>
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Send</button>
+    </form>
+{% endblock %}
+    <hr>
+{% for comment in comments %}
+    <div class="comment">
+        <div class="date">{{ comment.date }}</div>
+        <strong>{{ comment.created_by }}</strong>
+        <p>{{ comment.comment|linebreaks }}</p>
+    </div>
+{% empty %}
+    <p>No comments here yet :(</p>
+{% endfor %}
 {% endblock content-wrapper %}
+
 
 {% block main-content-inner-attrs %}
 {% endblock main-content-inner-attrs %}

@@ -3,7 +3,10 @@ from django.template import RequestContext
 
 # from fobi.decorators import permissions_required, SATISFY_ALL, SATISFY_ANY
 from django.views.generic import DetailView
+from requests import post
 
+from core.models import UserProfile
+from fobi.contrib.plugins.form_handlers.db_store.forms import CommentForm
 from .....base import (
     get_form_handler_plugin_widget,
     get_form_wizard_handler_plugin_widget,
@@ -12,11 +15,11 @@ from .....base import (
 from nine import versions
 
 from . import UID
-from .models import SavedFormDataEntry, SavedFormWizardDataEntry
+from .models import SavedFormDataEntry, SavedFormWizardDataEntry, Comments
 from .helpers import DataExporter
 
 if versions.DJANGO_GTE_1_10:
-    from django.shortcuts import render
+    from django.shortcuts import render, redirect
 else:
     from django.shortcuts import render_to_response
 
@@ -41,13 +44,69 @@ __all__ = (
 #    'db_store.delete_savedformdataentry',
 # ]
 
+def approve_form_entry(request, form_entry_id=None, feid=None):
+    entries = SavedFormDataEntry.objects.get(form_entry__id=form_entry_id, id=feid)
+    entries.approved = True
+    entries.save()
+    return redirect('savedformentry-detail', form_entry_id=form_entry_id, feid=feid)
+
 def saved_form_data_entries_detailview(
-        request, form_entry_id=None, feid=None,
+        request, form_entry_id=None, feid=None, theme=None,
         template_name="db_store/savedformdataentry_detail.html"):
-    entries = SavedFormDataEntry.objects.filter(form_entry__id=form_entry_id)
-    entry = entries.filter(id=feid)
-    context = {'entry' : entry}
-    return render(request, template_name, context)
+    if request.method == "GET":
+        entries = SavedFormDataEntry.objects.get(form_entry__id=form_entry_id, id=feid)
+        print(entries.id)
+        comments = Comments.objects.filter(form_entry__id=form_entry_id)
+        form = CommentForm()
+        context = {'entry': entries, "comments": comments, "form":form}
+
+
+        if theme:
+            context.update({'fobi_theme': theme})
+
+        widget = get_form_handler_plugin_widget(
+            UID, request=request, as_instance=True, theme=theme
+        )
+
+        if widget and widget.view_saved_form_data_entries_template_name:
+            template_name = widget.view_saved_form_data_entries_template_name
+
+        if versions.DJANGO_GTE_1_10:
+            return render(request, template_name, context)
+        else:
+            return render_to_response(
+                template_name, context, context_instance=RequestContext(request)
+            )
+    else:
+        form = CommentForm(request.POST)
+        entries = SavedFormDataEntry.objects.get(form_entry__id=form_entry_id, id=feid)
+        print(entries.id)
+        comments = Comments.objects.filter(form_entry__id=form_entry_id)
+        context = {'entry': entries, "comments": comments}
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.form_entry = entries.form_entry
+            comment.created_by = UserProfile.objects.get(user=request.user)
+            comment.save()
+            if theme:
+                context.update({'fobi_theme': theme})
+
+            widget = get_form_handler_plugin_widget(
+                UID, request=request, as_instance=True, theme=theme
+            )
+            forms = CommentForm
+            context.update({"form":forms})
+            if widget and widget.view_saved_form_data_entries_template_name:
+                template_name = widget.view_saved_form_data_entries_template_name
+
+            if versions.DJANGO_GTE_1_10:
+                return render(request, template_name, context)
+            else:
+                return render_to_response(
+                    template_name, context, context_instance=RequestContext(request)
+                )
+
+
 # @permissions_required(satisfy=SATISFY_ANY, perms=entries_permissions)
 @login_required
 def view_saved_form_data_entries(
@@ -64,6 +123,7 @@ def view_saved_form_data_entries(
     entries = SavedFormDataEntry._default_manager\
         .select_related('form_entry') \
         .filter(form_entry__user__pk=request.user.pk)
+    print (entries)
 
     if form_entry_id:
         entries = entries.filter(form_entry__id=form_entry_id)

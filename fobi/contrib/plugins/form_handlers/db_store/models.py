@@ -6,6 +6,7 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from core.models import UserProfile
 from .....helpers import two_dicts_to_string
 
 __title__ = 'fobi.contrib.plugins.form_handlers.db_store.models'
@@ -90,7 +91,7 @@ class SavedFormDataEntry(AbstractSavedFormDataEntry):
         blank=True,
         on_delete=models.CASCADE
     )
-
+    approved = models.BooleanField(default=False)
     class Meta(object):
         """Meta options."""
 
@@ -125,3 +126,32 @@ class SavedFormWizardDataEntry(AbstractSavedFormDataEntry):
 
     def __str__(self):
         return "Saved form wizard data entry from {0}".format(self.created)
+
+class Comments(models.Model):
+    comment = models.TextField(max_length=160)
+    date = models.DateTimeField(auto_now=False, auto_now_add=True)
+    form_entry = models.ForeignKey(
+        'fobi.FormEntry',
+        verbose_name=_("Form"),
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE
+    )
+    created_by = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.comment
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
