@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import redirect,render
 from core.forms import RegistrationForm
 # Create your views here.
-from .models import UserProfile
+from .models import UserProfile 
         
 
 def home(request):
