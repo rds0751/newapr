@@ -9,6 +9,7 @@ from django.shortcuts import render
 
 from decorators import ajax_required
 from messenger.models import Message
+from core.models import UserProfile
 
 # "{% url 'send_message' %}"
 @login_required

@@ -46,7 +46,7 @@
                 <tr>
                   <td>
                     {#<a href="{% url 'fobi.view_form_entry' entry.form_entry.slug %}">{{ entry.form_entry.name }}</a>#}
-                    <a href="{% url 'fobi.contrib.plugins.form_handlers.db_store.view_saved_form_data_entries' entry.form_entry.pk %}" title="{% trans 'Filter' %}">{{ entry.form_entry.name }}</a>
+                    <a href="detail/{{ entry.id }}" title="{% trans 'Filter' %}">{{ entry.form_entry.name }}</a>
                   </td>
                   <td class="content"><div>{{ entry.formatted_saved_data|safe }}</div></td>
                   <td>{{ entry.created }}</td>

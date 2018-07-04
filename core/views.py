@@ -3,11 +3,14 @@ from django.contrib.auth.models import User
 from django.shortcuts import redirect,render
 from core.forms import RegistrationForm
 # Create your views here.
-from .models import UserProfile
+from .models import UserProfile 
         
 
 def home(request):
     return render(request, 'core/index.html')
+
+def products(request):
+    return render(request, 'core/products.html')
 
 def blog1(request):
     return render(request, 'core/blog1.html')
@@ -26,10 +29,10 @@ def mainpage(request):
         ui = UserProfile.objects.get(user=request.user)
         if ui.rio == "applicant":
             return redirect('/fobi/orglist')
-        elif ui.rio == "organisation":
+        elif ui.rio == "organization":
             return redirect('/fobi/forms/create')
         else:
-            return render(request, 'executive/home.html')
+            return redirect('/msg')
     else:
         args = {}
         return render(request,'/main_page.html', args)

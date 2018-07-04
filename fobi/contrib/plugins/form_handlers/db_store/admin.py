@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
 from .helpers import DataExporter
-from .models import SavedFormDataEntry, SavedFormWizardDataEntry
+from .models import SavedFormDataEntry, SavedFormWizardDataEntry, Comments
 
 __title__ = 'fobi.contrib.plugins.form_handlers.db_store.admin'
 __author__ = 'Artur Barseghyan <artur.barseghyan@gmail.com>'
@@ -140,3 +140,4 @@ class SavedFormWizardDataEntryAdmin(BaseSavedFormDataEntryAdmin):
 
 
 admin.site.register(SavedFormWizardDataEntry, SavedFormWizardDataEntryAdmin)
+admin.site.register(Comments)

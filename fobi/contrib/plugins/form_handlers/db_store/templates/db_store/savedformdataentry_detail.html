@@ -1,0 +1,67 @@
+{% extends fobi_theme.base_edit_template %}
+
+{% load i18n static %}
+
+{% block page-title %}{% trans "View form data" %}{% endblock page-title %}
+
+{% block theme-javascripts %}
+    {{ block.super }}
+    <script src="{% static 'db_store/js/jquery.expander.min.js' %}"></script>
+    <script src="{% static 'db_store/js/db_store.js' %}"></script>
+{% endblock theme-javascripts %}
+
+{% block navbar-menu-content %}
+{% comment %}
+{% if form_entry_id %}
+<li class="active"><a href="{% url 'fobi.edit_form_entry' form_entry_id %}">{% trans "Edit" %}</a></li>
+{% endif %}
+{% endcomment %}
+{% endblock navbar-menu-content %}
+
+{% block content-wrapper %}
+
+    <div class="row">
+      <div class="col-12 col-sm-12 col-lg-12">
+        <!-- Form element plugins -->
+        <div>
+          <h2 id="form_elements">{% trans "Saved form data" %}</h2>
+        </div>
+
+                    {#<a href="{% url 'fobi.view_form_entry' entry.form_entry.slug %}">{{ entry.form_entry.name }}</a>#}
+                    <p>{{ entry.form_entry.name }}</p>
+               <div>{{ entry.formatted_saved_data|safe }}</div>
+                {% if entry.approved %}
+                <p>Approval status:Approved</p>
+          {% else %}
+          <p>Approval status: Not approved</p>
+          <a href=""></a>
+
+<a href="approve"><button style="color: green">Approve</button></a>
+{% endif %}
+    </div>
+    </div>
+    {% block content %}
+    <h1>New comment</h1>
+    <form method="POST" class="post-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="save btn btn-default">Send</button>
+    </form>
+{% endblock %}
+    <hr>
+{% for comment in comments %}
+    <div class="comment">
+        <div class="date">{{ comment.date }}</div>
+        <strong>{{ comment.created_by }}</strong>
+        <p>{{ comment.comment|linebreaks }}</p>
+    </div>
+{% empty %}
+    <p>No comments here yet :(</p>
+{% endfor %}
+{% endblock content-wrapper %}
+
+
+{% block main-content-inner-attrs %}
+{% endblock main-content-inner-attrs %}
+
+{% block sidebar-wrapper %}
+{% endblock sidebar-wrapper %}
