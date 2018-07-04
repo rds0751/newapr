@@ -54,6 +54,7 @@ __all__ = (
     'FormWizardHandlerEntry',
 )
 
+from core.models import UserProfile
 
 logger = logging.getLogger(__name__)
 
@@ -378,13 +379,8 @@ class FormEntry(models.Model):
         blank=True,
         help_text=_("Shown in templates if available.")
     )
-    title2 = models.CharField(
-        _("Title-ext"),
-        max_length=255,
-        null=True,
-        blank=True,
-        help_text=_("Shown in templates if available.")
-    )
+    approvers = models.ManyToManyField(UserProfile, verbose_name=_("Approvers"),
+                                   blank=True)
     slug = AutoSlugField(
         populate_from='name', verbose_name=_("Slug"), unique=True
     )

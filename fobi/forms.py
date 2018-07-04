@@ -79,6 +79,7 @@ class FormEntryForm(forms.ModelForm):
         fields = (
             'name',
             'title',
+            'approvers',
             'is_public',
             'active_date_from',
             'active_date_to',
@@ -112,7 +113,7 @@ class FormEntryForm(forms.ModelForm):
             attrs={'class': theme.form_element_html_class}
         )
 
-        self.fields['title2'].widget = forms.widgets.TextInput(
+        self.fields['approvers'].widget = forms.widgets.TextInput(
             attrs={'class': theme.form_element_html_class}
         )
 
