@@ -112,6 +112,10 @@ class FormEntryForm(forms.ModelForm):
             attrs={'class': theme.form_element_html_class}
         )
 
+        self.fields['title2'].widget = forms.widgets.TextInput(
+            attrs={'class': theme.form_element_html_class}
+        )
+
         self.fields['success_page_title'].widget = forms.widgets.TextInput(
             attrs={'class': theme.form_element_html_class}
         )
