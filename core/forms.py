@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from .models import UserProfile
+from .models import UserProfile, Organization
 from django.forms import ModelForm
 
 rio_choices = [
@@ -16,7 +16,7 @@ class RegistrationForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'First Name', 'tabindex': 1}), required=False)
     last_name = forms.CharField(max_length=30, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Last Name', 'tabindex': 1}), required=False)
     email = forms.EmailField(max_length=254, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Email Address','tabindex':1}))
-    organisation_id = forms.CharField(max_length=100, widget=forms.TextInput(attrs={'class':'form-control','placeholder':'Organisation ID','tabindex':1}))
+    organisation_id = forms.ModelChoiceField(queryset=Organization.objects.filter(), label='room', widget=forms.Select)
     role_in_organisation = forms.CharField(widget=forms.Select(choices=rio_choices, attrs={'class':'form-control','tabindex':1}))
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control','placeholder':'Password','tabindex':2}))
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirm Password', 'tabindex': 2}))
