@@ -3,6 +3,8 @@ import socket
 from six.moves.urllib.parse import urlparse
 
 from django import forms
+from core.models import UserProfile
+from django.contrib.auth.models import User
 from django.forms.models import modelformset_factory
 from django.utils.translation import ugettext, ugettext_lazy as _
 
@@ -113,7 +115,11 @@ class FormEntryForm(forms.ModelForm):
             attrs={'class': theme.form_element_html_class}
         )
 
-        self.fields['approvers'].widget = forms.widgets.TextInput(
+        CHOICES = [['0','select the executive']]
+        us = UserProfile.objects.filter(rio='executive')
+        for i,j in zip(range(1,10), us):
+            CHOICES.append([i,j])
+        self.fields['approvers'].widget = forms.widgets.Select( choices=CHOICES,
             attrs={'class': theme.form_element_html_class}
         )
 

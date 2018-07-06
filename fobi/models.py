@@ -380,7 +380,7 @@ class FormEntry(models.Model):
         help_text=_("Shown in templates if available.")
     )
     approvers = models.ManyToManyField(UserProfile, verbose_name=_("Approvers"),
-                                   blank=True)
+                                   blank=True, limit_choices_to={'rio': "executive"})
     slug = AutoSlugField(
         populate_from='name', verbose_name=_("Slug"), unique=True
     )
