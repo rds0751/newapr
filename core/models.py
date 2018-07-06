@@ -3,22 +3,15 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 # Create your models here.
-
-
-class Organization(models.Model):
-	oname = models.CharField(max_length=250,default='')
-
-	def __str__(self):
-		return self.oname
-
 class UserProfile(models.Model):
-    RIO = (('','Select your Role in Organization'),
-    ('executive', 'Executive'),
-    ('admin', 'Admin'),
-    ('student', 'Student'),)
     user=models.OneToOneField(User, on_delete=models.PROTECT)
-    oid=models.ForeignKey(Organization, on_delete=models.CASCADE, default='')
-    rio=models.CharField(max_length=20,default='',choices=RIO)
+    #first_name=models.CharField(max_length=30,default='')
+    #last_name=models.CharField(max_length=20,default='')
+    #email=models.EmailField(default='')
+    oid=models.CharField(max_length=20,default='')
+    rio=models.CharField(max_length=20,default='')
+    #password1 = models.CharField(max_length=15, default='')
+    #password2 = models.CharField(max_length=15, default='')
 
     def __str__(self):
         return self.user.first_name
@@ -26,4 +19,5 @@ class UserProfile(models.Model):
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user=instance)
+
 

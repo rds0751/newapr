@@ -250,7 +250,7 @@ dashboard_permissions = [
     'fobi.change_formentry',
     'fobi.delete_formentry',
 ]
-@login_required
+@login_required 
 def FormbyOrg(request, org_id=None):
     form_entries = FormEntry._default_manager.all()
     list = []
