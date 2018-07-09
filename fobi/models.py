@@ -839,5 +839,3 @@ class FormWizardHandlerEntry(AbstractFormWizardPluginEntry):
         """Get registry."""
         return form_wizard_handler_plugin_registry
 
-class Approvers(models.Model):
-    appr = models.ManyToManyField(UserProfile, limit_choices_to={'rio': "executive"})
