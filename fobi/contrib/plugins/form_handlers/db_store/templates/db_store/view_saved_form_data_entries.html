@@ -39,6 +39,7 @@
                   <th>{% trans "Form" %}</th>
                   <th>{% trans "Data" %}</th>
                   <th>{% trans "Date" %}</th>
+                  <th>Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -50,6 +51,14 @@
                   </td>
                   <td class="content"><div>{{ entry.formatted_saved_data|safe }}</div></td>
                   <td>{{ entry.created }}</td>
+                  <td>
+                {% if entry.approved %}
+                <p style="color: green">Approval status:Approved</p>
+          {% elif entry.disapproved %}
+          <p style="color: red">Approval status: Not approved</p>
+        {% else %}
+        <p style="color: orange">Approval stautus: Waiting</p></td>
+        {% endif %}
                 </tr>
               {% endfor %}
               </tbody>

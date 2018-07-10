@@ -1,8 +1,8 @@
-from django.conf.urls import url
+from django.conf.urls import url 
 
 from ..views import (
     view_saved_form_data_entries, export_saved_form_data_entries,
-    saved_form_data_entries_detailview, approve_form_entry)
+    saved_form_data_entries_detailview, approve_form_entry, disapprove_form_entry)
 
 __title__ = 'fobi.contrib.plugins.form_handlers.db_store.urls'
 __author__ = 'Artur Barseghyan <artur.barseghyan@gmail.com>'
@@ -51,5 +51,7 @@ urlpatterns = [
     url(r'^(?P<form_entry_id>[-\w]+)/detail/(?P<feid>[-\w]+)/$', view=saved_form_data_entries_detailview, name='savedformentry-detail'),
 
     url(r'^(?P<form_entry_id>[-\w]+)/detail/(?P<feid>[-\w]+)/approve$', view=approve_form_entry, name='approve'),
+
+    url(r'^(?P<form_entry_id>[-\w]+)/detail/(?P<feid>[-\w]+)/disapprove$', view=disapprove_form_entry, name='approve'),
 
 ]

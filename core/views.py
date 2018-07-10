@@ -29,7 +29,7 @@ def mainpage(request):
         ui = UserProfile.objects.get(user=request.user)
         if ui.rio == "applicant":
             return redirect('/fobi/orglist')
-        elif ui.rio == "organization":
+        elif ui.rio == "organisation":
             return redirect('/fobi/forms/create')
         else:
             return redirect('/msg')

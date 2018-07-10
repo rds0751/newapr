@@ -93,6 +93,7 @@ class FormEntryForm(forms.ModelForm):
             # 'is_cloneable',
         )
 
+
     def __init__(self, *args, **kwargs):
         """Constructor."""
         self.request = kwargs.pop('request', None)
@@ -115,11 +116,11 @@ class FormEntryForm(forms.ModelForm):
             attrs={'class': theme.form_element_html_class}
         )
 
-        CHOICES = [['0','select the executive']]
+        CHOICES = []
         us = UserProfile.objects.filter(rio='executive')
         for i,j in zip(range(1,10), us):
             CHOICES.append([i,j])
-        self.fields['approvers'].widget = forms.widgets.Select( choices=CHOICES,
+        self.fields['approvers'].widget = forms.widgets.CheckboxSelectMultiple( choices=CHOICES,
             attrs={'class': theme.form_element_html_class}
         )
 

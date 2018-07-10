@@ -42,11 +42,17 @@ __all__ = (
 #    'db_store.add_savedformdataentry',
 #    'db_store.change_savedformdataentry',
 #    'db_store.delete_savedformdataentry',
-# ]
+# ] 
 
 def approve_form_entry(request, form_entry_id=None, feid=None):
     entries = SavedFormDataEntry.objects.get(form_entry__id=form_entry_id, id=feid)
     entries.approved = True
+    entries.save()
+    return redirect('savedformentry-detail', form_entry_id=form_entry_id, feid=feid)
+
+def disapprove_form_entry(request, form_entry_id=None, feid=None):
+    entries = SavedFormDataEntry.objects.get(form_entry__id=form_entry_id, id=feid)
+    entries.disapproved = True
     entries.save()
     return redirect('savedformentry-detail', form_entry_id=form_entry_id, feid=feid)
 

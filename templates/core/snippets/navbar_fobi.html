@@ -1,0 +1,58 @@
+    {% load i18n static %}
+
+    {% block navbar-wrapper %} 
+  <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
+    <div class="container">
+      {% block navbar %}
+        {% block navbar-content %}
+        {% block navbar-header %}
+        <div class="navbar-header">
+          <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon icon-bar"></span>
+            <span class="icon icon-bar"></span>
+            <span class="icon icon-bar"></span>
+          </button>
+          {% block dashboard-menu-item %}
+          {% url 'fobi.dashboard' as fobi_dashboard_url %}
+          <a href="{{ fobi_dashboard_url }}" class="navbar-brand"><img src="{% static "core/images/logo/hor_rad.png" %}" class="img-brand" id="img-brand" alt=""></a>
+          {% endblock dashboard-menu-item %}
+        </div>
+        {% endblock navbar-header %}
+
+        {% block navbar-menu-wrapper %}
+        <div class="collapse navbar-collapse">
+          {% block navbar-menu %}
+          <ul class="nav navbar-nav navbar-nav-first">
+            {% block navbar-menu-content %}
+                         <li><a href="/" class="smoothScroll">Home</a></li>
+                         <li><a href="/about" class="smoothScroll">About</a></li>
+                         <li><a href="/blog" class="smoothScroll">Blog</a></li>
+                         <li><a href="/work" class="smoothScroll">Our Work</a></li>
+                         <li><a href="/contact" class="smoothScroll">Contacts</a></li>
+                         <li><a href="/products" class="smoothScroll">Products</a></li>
+            {% endblock navbar-menu-content %}
+            {% block navbar-menu-navigation-content %}
+            
+            {% endblock navbar-menu-navigation-content %}
+          </ul>
+          {% endblock navbar-menu %}
+
+          {% block navbar-menu-right %}
+          <ul class="nav navbar-nav navbar-right">
+            {% block navbar-menu-right-content %}
+                        <li><a href="{% url 'fobi.dashboard' %}">{% trans "Forms" %}</a></li>
+                         <li><a href="https://fb.com/theapproapp"><i class="fa fa-facebook-square"></i></a></li>
+                         <li><a href="https://twitter.com/theapproapp"><i class="fa fa-twitter"></i></a></li>
+                         <li><a href="https://www.linkedin.com/company/approapp1"><i class="fa fa-linkedin"></i></a></li>
+            {% endblock navbar-menu-right-content %}
+          </ul>
+          {% endblock navbar-menu-right %}
+
+        </div><!-- /.nav-collapse -->
+        {% endblock navbar-menu-wrapper %}
+        {% endblock navbar-content %}
+      {% endblock navbar %}
+    </div><!-- /.navbar -->
+  </section>
+    {% endblock navbar-wrapper %}
+

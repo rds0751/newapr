@@ -360,7 +360,7 @@ class FormWizardEntry(models.Model):
             'fobi.view_form_wizard_entry',
             kwargs={'form_wizard_entry_slug': self.slug}
         )
-
+ 
 
 @python_2_unicode_compatible
 class FormEntry(models.Model):

@@ -31,12 +31,14 @@
                     <p>{{ entry.form_entry.name }}</p>
                <div>{{ entry.formatted_saved_data|safe }}</div>
                 {% if entry.approved %}
-                <p>Approval status:Approved</p>
-          {% else %}
-          <p>Approval status: Not approved</p>
+                <p style="color: green">Approval status:Approved</p>
+          {% elif entry.disapproved %}
+          <p style="color: red">Approval status: Not approved</p>
+        {% else %}
+        <p style="color: orange">Approval stautus: Waiting</p>
           <a href=""></a>
 
-<a href="approve"><button style="color: green">Approve</button></a>
+<a href="approve"><button style="color: green">Approve</button></a><a href=""><button style="color: red">disapprove</button></a>
 {% endif %}
     </div>
     </div>

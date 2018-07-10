@@ -51,84 +51,16 @@
     {% block extrahead %}{% endblock extrahead %}
   </head>
 
-  <body{% block body-attrs %}{% if fobi_theme %} class="theme {{ fobi_theme.html_class }}"{% endif %}{% endblock body-attrs %}>
-  {% block before-main-wrapper %}{% endblock %}
-
+  <body>
+  
+  {% include 'core/snippets/navbar_fobi.html' %}
+  <section id="blog-header" data-stellar-background-ratio="0.5">
+          <div class="overlay"></div>
+          <div class="container">
+          </div>
+     </section>
   {% block main-wrapper %}
-
-    {% block navbar-wrapper %}
-  <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
-    <div class="{% block navbar-class %}{% endblock navbar-class %}">
-      {% block navbar %}
-      <div class="{% block navbar-container-class %}{% endblock navbar-container-class %}">
-        {% block navbar-content %}
-        {% block navbar-header %}
-        <div class="navbar-header">
-          <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="icon icon-bar"></span>
-            <span class="icon icon-bar"></span>
-            <span class="icon icon-bar"></span>
-          </button>
-          {% block dashboard-menu-item %}
-          {% url 'fobi.dashboard' as fobi_dashboard_url %}
-          <a class="navbar-brand" href="{{ fobi_dashboard_url }}">{{ fobi_theme.project_name }}</a>
-          {% endblock dashboard-menu-item %}
-        </div>
-        {% endblock navbar-header %}
-
-        {% block navbar-menu-wrapper %}
-        <div class="collapse navbar-collapse">
-          {% block navbar-menu %}
-          <ul class="nav navbar-nav">
-            {% block navbar-menu-content %}
-            <!--
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                  Dropdown <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="#sub1">Submenu 1</a></li>
-                    <li><a href="#sub2">Submenu 2</a></li>
-                </ul>
-            </li>
-            -->
-            {% endblock navbar-menu-content %}
-            {% block navbar-menu-navigation-content %}
-            {% comment %}
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                  {% trans "Dashboards" %} <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="{% url 'fobi.dashboard' %}">{% trans "Forms dashboard" %}</a></li>
-                    <li><a href="{% url 'fobi.form_wizards_dashboard' %}">{% trans "Form wizards dashboard" %}</a></li>
-                </ul>
-            </li>
-            {% endcomment %}
-            {% endblock navbar-menu-navigation-content %}
-          </ul>
-          {% endblock navbar-menu %}
-
-          {% block navbar-menu-right %}
-          <ul class="nav navbar-nav navbar-right">
-            {% block navbar-menu-right-content %}
-            <li><a href="{% url 'fobi.dashboard' %}">{% trans "Forms" %}</a></li>
-            <li><a href="{% url 'fobi.form_wizards_dashboard' %}">{% trans "Wizards" %}</a></li>
-            {% endblock navbar-menu-right-content %}
-          </ul>
-          {% endblock navbar-menu-right %}
-
-        </div><!-- /.nav-collapse -->
-        {% endblock navbar-menu-wrapper %}
-        {% endblock navbar-content %}
-      </div><!-- /.container -->
-      {% endblock navbar %}
-    </div><!-- /.navbar -->
-  </section>
-    {% endblock navbar-wrapper %}
-
+       
     {% block main-content-wrapper %}
     <div class="container">
       {% block messages-wrapper %}

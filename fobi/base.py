@@ -186,7 +186,7 @@ class BaseTheme(object):
     media_js = []
 
     # General HTML specific
-    project_name = _("Build your forms")  # Project name
+    project_name = _("ApproApp")  # Project name
     footer_text = ''  # '&copy; Company 2014'
 
     # ***********************************************************************
