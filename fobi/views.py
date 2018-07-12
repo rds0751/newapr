@@ -442,6 +442,7 @@ edit_form_entry_permissions = [
 
 
 @login_required
+@is_not_applicant
 @permissions_required(satisfy=SATISFY_ANY, perms=edit_form_entry_permissions)
 def edit_form_entry(request, form_entry_id, theme=None, template_name=None):
     """Edit form entry.
