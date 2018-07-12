@@ -155,6 +155,48 @@ def view_saved_form_data_entries(
             template_name, context, context_instance=RequestContext(request)
         )
 
+@login_required
+def view_saved_form_data_entries_user_past(
+        request, form_entry_id=None, theme=None,
+        template_name='db_store/view_saved_form_data_entries_user_past.html'):
+    """View saved form data entries.
+
+    :param django.http.HttpRequest request:
+    :param int form_entry_id: Form ID.
+    :param fobi.base.BaseTheme theme: Subclass of ``fobi.base.BaseTheme``.
+    :param string template_name:
+    :return django.http.HttpResponse:
+    """
+    entries = SavedFormDataEntry._default_manager\
+        .select_related('form_entry') \
+        .filter(form_entry__user__pk=request.user.pk)
+    print (entries)
+
+    if form_entry_id:
+        entries = entries.filter()
+
+    context = {'entries': entries, 'form_entry_id': form_entry_id}
+
+    # If given, pass to the template (and override the value set by
+    # the context processor.
+    if theme:
+        context.update({'fobi_theme': theme})
+
+    widget = get_form_handler_plugin_widget(
+        UID, request=request, as_instance=True, theme=theme
+    )
+
+    if widget and widget.view_saved_form_data_entries_template_name:
+        template_name = widget.view_saved_form_data_entries_template_name
+
+    if versions.DJANGO_GTE_1_10:
+        return render(request, template_name, context)
+    else:
+        return render_to_response(
+            template_name, context, context_instance=RequestContext(request)
+        )
+
+
 
 @login_required
 def export_saved_form_data_entries(request, form_entry_id=None, theme=None):

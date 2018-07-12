@@ -28,7 +28,7 @@ def mainpage(request):
     if request.user.is_authenticated:
         ui = UserProfile.objects.get(user=request.user)
         if ui.rio == "applicant":
-            return redirect('/fobi/orglist')
+            return redirect('/applicant/dashboard')
         elif ui.rio == "organisation":
             return redirect('/fobi/forms/create')
         else:

@@ -2,7 +2,7 @@ from django.conf.urls import url
 
 from ..views import (
     view_saved_form_data_entries, export_saved_form_data_entries,
-    saved_form_data_entries_detailview, approve_form_entry, disapprove_form_entry)
+    saved_form_data_entries_detailview, approve_form_entry, disapprove_form_entry, view_saved_form_data_entries_user_past)
 
 __title__ = 'fobi.contrib.plugins.form_handlers.db_store.urls'
 __author__ = 'Artur Barseghyan <artur.barseghyan@gmail.com>'
@@ -30,6 +30,11 @@ urlpatterns = [
     # Form entries listing
     url(r'^$',
         view=view_saved_form_data_entries,
+        name='fobi.contrib.plugins.form_handlers.db_store.'
+             'view_saved_form_data_entries'),
+
+    url(r'^sent/',
+        view=view_saved_form_data_entries_user_past,
         name='fobi.contrib.plugins.form_handlers.db_store.'
              'view_saved_form_data_entries'),
 

@@ -91,7 +91,8 @@ class SavedFormDataEntry(AbstractSavedFormDataEntry):
         blank=True,
         on_delete=models.CASCADE
     )
-    approved = models.BooleanField(default=False)
+    approved = models.BooleanField(default = False)
+    disapproved = models.BooleanField(default = False)
     class Meta(object):
         """Meta options."""
 

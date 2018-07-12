@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url,include
 from . import views
+from django.views.generic import RedirectView
 
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
+    url(r'^sent', RedirectView.as_view(url='/fobi/plugins/form-handlers/db-store/sent'), name='sent'),
     url(r'^uploads/form/$', views.model_form_upload, name='model_form_upload'),
+    url(r'^dashboard/', views.applicant_dashboard, name='applicant_dashboard'),
 ]
