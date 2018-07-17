@@ -20,7 +20,9 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
-    url(r'^sent', RedirectView.as_view(url='/fobi/plugins/form-handlers/db-store/sent'), name='sent'),
+    url(r'^sent', views.past_applications, name='sent'),
     url(r'^uploads/form/$', views.model_form_upload, name='model_form_upload'),
     url(r'^dashboard/', views.applicant_dashboard, name='applicant_dashboard'),
+    url(r'^verification/', views.verify, name='verify'),
+    
 ]

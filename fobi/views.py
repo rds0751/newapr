@@ -2268,6 +2268,9 @@ def view_form_entry(request, form_entry_slug, theme=None, template_name=None):
 
         if form.is_valid():
             # Fire form valid callbacks, before handling submitted plugin
+            form_entry.entry_id__submitted_by = request.user
+            print(request.user)
+
             # form data.
             form = fire_form_callbacks(
                 form_entry=form_entry,

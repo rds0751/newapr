@@ -2,7 +2,10 @@ from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.models import User
 from django.shortcuts import redirect,render
 from core.forms import RegistrationForm
+from django.template import RequestContext
+from django.shortcuts import render_to_response
 # Create your views here.
+from fobi.contrib.plugins.form_handlers.db_store.models import SavedFormDataEntry
 from .models import UserProfile 
         
 
@@ -23,6 +26,22 @@ def blog3(request):
 
 def blog4(request):
     return render(request, 'core/blog4.html')
+
+def search(request):
+    return render(request, 'core/search.html')
+
+def results(request):
+    query = request.GET.get('q')
+    try:
+        query = int(query)
+    except ValueError:
+        query = None
+        result = None
+    if query:
+        result = SavedFormDataEntry.objects.get(application_id='8aqF7w2RcH')
+    args = {'result':result}
+    print(result)
+    return render(request, 'core/results.html', args)
 
 def mainpage(request):
     if request.user.is_authenticated:

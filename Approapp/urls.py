@@ -26,6 +26,7 @@ urlpatterns = [
     # View URLs
 	url(r'^fobi/', include('fobi.urls.view')),
     url(r'^applicant/', include('applicant.urls')),
+    url(r'^executive/', include('executive.urls')),
 
 	# Edit URLs
 	url(r'^fobi/', include('fobi.urls.edit')),

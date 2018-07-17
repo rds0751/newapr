@@ -1,6 +1,7 @@
 import bleach
 import simplejson as json
 from six import python_2_unicode_compatible, string_types
+from django.contrib.auth.models import User
 
 from django.conf import settings
 from django.db import models
@@ -83,6 +84,15 @@ class AbstractSavedFormDataEntry(models.Model):
 @python_2_unicode_compatible
 class SavedFormDataEntry(AbstractSavedFormDataEntry):
     """Saved form data."""
+    def pkgen():
+    	rude = ('lol',)
+    	bad_pk = True
+    	while bad_pk:
+    		pk = User.objects.make_random_password(length=10)
+    		bad_pk = False
+    		for rw in rude:
+    			if pk.find(rw) >= 0: bad_pk = True
+    	return pk
 
     form_entry = models.ForeignKey(
         'fobi.FormEntry',
@@ -92,7 +102,9 @@ class SavedFormDataEntry(AbstractSavedFormDataEntry):
         on_delete=models.CASCADE
     )
     approved = models.BooleanField(default = False)
+    submitted_by = models.OneToOneField(User, null=True, blank=True, related_name='submitted_by')
     disapproved = models.BooleanField(default = False)
+    application_id = models.CharField(max_length=6, null=False, default=pkgen())
     class Meta(object):
         """Meta options."""
 

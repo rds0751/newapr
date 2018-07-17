@@ -186,12 +186,14 @@ class FormEntryAdmin(admin.ModelAdmin):
     list_filter = ('is_public', 'is_cloneable')
     readonly_fields = ('slug',)
     radio_fields = {"user": admin.VERTICAL}
+    filter_horizontal = ('approvers',)
     fieldsets = (
         (_("Form"), {
             'fields': (
                 'name',
                 'is_public',
                 'is_cloneable',
+                'approvers',
                 'active_date_from',
                 'active_date_to',
                 'inactive_page_title',

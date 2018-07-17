@@ -7,9 +7,12 @@ from autoslug import AutoSlugField
 from django.conf import settings
 from django.contrib.auth.models import Group
 from core.models import UserProfile
+from django.contrib.auth.models import User
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
+
+from fobi.contrib.plugins.form_handlers.db_store.models import SavedFormDataEntry
 
 
 from nine.versions import DJANGO_GTE_1_10
@@ -369,7 +372,8 @@ class FormEntry(models.Model):
     user = models.ForeignKey(
         AUTH_USER_MODEL,
         verbose_name=_("User"),
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='fuck'
     )
     name = models.CharField(_("Name"), max_length=255)
     title = models.CharField(
@@ -378,6 +382,15 @@ class FormEntry(models.Model):
         null=True,
         blank=True,
         help_text=_("Shown in templates if available.")
+    )
+
+    entry_id = models.ForeignKey(
+        SavedFormDataEntry,
+        verbose_name=_("User"),
+        on_delete=models.CASCADE,
+        related_name='fuck',
+        null=True,
+        blank=True
     )
     approvers = models.ManyToManyField(UserProfile, verbose_name=_("Approvers"),
                                    blank=True, limit_choices_to={'rio': "executive"})
