@@ -4,6 +4,7 @@ from django.shortcuts import redirect,render
 from core.forms import RegistrationForm
 from django.template import RequestContext
 from django.shortcuts import render_to_response
+from django.db.models import Q
 # Create your views here.
 from fobi.contrib.plugins.form_handlers.db_store.models import SavedFormDataEntry
 from .models import UserProfile 
@@ -38,10 +39,32 @@ def results(request):
         query = None
         result = None
     if query:
-        result = SavedFormDataEntry.objects.get(application_id='8aqF7w2RcH')
+        result = SavedFormDataEntry.objects.filter(application_id = query).distinct()
     args = {'result':result}
     print(result)
     return render(request, 'core/results.html', args)
+
+def search1(request):
+    if request.method == 'GET':
+        query= request.GET.get('q')
+
+        submitbutton= request.GET.get('submit')
+
+        if query is not None:
+            lookups= Q(application_id=query)
+
+            results= SavedFormDataEntry.objects.filter(lookups).distinct()
+
+            context={'results': results,
+                     'submitbutton': submitbutton}
+
+            return render(request, 'core/search1.html', context)
+
+        else:
+            return render(request, 'core/search1.html')
+
+    else:
+        return render(request, 'core/search1.html')
 
 def mainpage(request):
     if request.user.is_authenticated:

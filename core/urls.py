@@ -33,6 +33,5 @@ urlpatterns = [
     url(r'^register', views.register, name='register'),
     url(r'^profile/', views.profile_view, name='profile_view'),
     url(r'^profile/edit/$', views.profile_edit, name='profile_edit'),
-    url(r'^results/', views.results),
-    url(r'^search/', views.search),
+    url(r'^verify/', views.search1, name="search"),
 ]

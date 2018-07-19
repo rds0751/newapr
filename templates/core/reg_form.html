@@ -31,17 +31,17 @@
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="/" class="navbar-brand">ApproApp</a>
+                    <a href="/" class="navbar-brand"><img src="{% static "core/images/logo/hor_rad.png" %}" class="img-brand" id="img-brand" alt=""></a>
                </div>
 
                <!-- MENU LINKS -->
                <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-nav-first">
-                         <li><a href="#home" class="smoothScroll">Home</a></li>
-                         <li><a href="#about" class="smoothScroll">About</a></li>
-                         <li><a href="#blog" class="smoothScroll">Blog</a></li>
-                         <li><a href="#work" class="smoothScroll">Our Work</a></li>
-                         <li><a href="#contact" class="smoothScroll">Contacts</a></li>
+                         <li><a href="/" class="smoothScroll">Home</a></li>
+                         <li><a href="/" class="smoothScroll">About</a></li>
+                         <li><a href="/products" class="smoothScroll">Products</a></li>
+                         <li><a href="/applicant/dashboard" class="smoothScroll">Apply</a></li>
+                         <li><a href="/verify" class="smoothScroll">Verify Approvals</a></li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
@@ -54,12 +54,25 @@
 
           </div>
      </section>
+     <section id="blog-header" data-stellar-background-ratio="0.5">
+          <div class="overlay"></div>
+          <div class="container">
+          </div>
+     </section>
+<section id="blog-detail" data-stellar-background-ratio="0.5">
 
-     <section id="contact" data-stellar-background-ratio="0.5">
+  <section id="blog-detail" data-stellar-background-ratio="0.5">
           <div class="container">
                <div class="row">
 
-                    <div class="col-md-12 col-sm-12 mx-auto">
+                    <div class="col-md-offset-1 col-md-10 col-sm-12">
+                         <!-- BLOG THUMB -->
+                         <div class="blog-detail-thumb">
+                              <div class="blog-image">
+
+
+
+                                <div class="col-md-12 col-sm-12 mx-auto">
                          <div class="section-title">
                              <p></p>
                              <p></p>
@@ -105,17 +118,23 @@
                            </div>
                            <div class="row">
                                <div class="col-sm-6 col-sm-offset-3">
+                                <br>
                                    <script src='https://www.google.com/recaptcha/api.js'></script>
                                         <div class="g-recaptcha center" data-sitekey="6Lfk_FgUAAAAALz35PN7m8PrvREBvMXHbbpBC9la">
 
                                         </div>
-                                   <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
+                                   <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="section-btn" value="Register Now">
                                </div>
                            </div>
                        </div>
                    </form>
+                 </div>
+                         </div>
+                    </div>
+                    
                </div>
           </div>
+     </section>
 
 {% include 'core/snippets/footer.html' %}
 
