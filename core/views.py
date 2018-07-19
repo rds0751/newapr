@@ -48,10 +48,12 @@ def mainpage(request):
         ui = UserProfile.objects.get(user=request.user)
         if ui.rio == "applicant":
             return redirect('/applicant/dashboard')
-        elif ui.rio == "organisation":
-            return redirect('/fobi/forms/create')
+        elif ui.rio == "admin":
+            return redirect('/fobi/')
+        elif ui.rio == "executive":
+            return redirect('/executive/')
         else:
-            return redirect('/msg')
+            pass
     else:
         args = {}
         return render(request,'/main_page.html', args)
