@@ -1,11 +1,12 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 # Create your views here.
-from applicant.models import Document
-from applicant.forms import DocumentForm, VerificationForm
+from applicant.models import Document, Ticket
+from applicant.forms import DocumentForm, VerificationForm, TicketForm
 
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
+from django.utils import timezone
 
 # from fobi.decorators import permissions_required, SATISFY_ALL, SATISFY_ANY
 from django.views.generic import DetailView
@@ -28,6 +29,23 @@ if versions.DJANGO_GTE_1_10:
     from django.shortcuts import render, redirect
 else:
     from django.shortcuts import render_to_response
+
+def post_new(request):
+    if request.method == "POST":
+        form = TicketForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.published_date = timezone.now()
+            post.save()
+            return redirect('post_detail', pk=post.pk)
+    else:
+        form = TicketForm()
+    return render(request, 'applicant/ticket/post_edit.html', {'form': form})
+
+def post_detail(request):
+    post = Ticket.objects.filter(author = request.user)
+    return render(request, 'applicant/ticket/post_detail.html', { 'post': post })
 
 
 def home(request):

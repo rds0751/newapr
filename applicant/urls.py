@@ -24,5 +24,6 @@ urlpatterns = [
     url(r'^uploads/form/$', views.model_form_upload, name='model_form_upload'),
     url(r'^dashboard/', views.applicant_dashboard, name='applicant_dashboard'),
     url(r'^verification/', views.verify, name='verify'),
-    
+    url(r'^ticket/new/', views.post_new, name='post_new'),
+    url(r'^ticket/<int:pk>/', views.post_detail, name='post_detail'),
 ]
