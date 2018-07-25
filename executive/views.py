@@ -63,11 +63,11 @@ def saved_form_data_entries_detailview(
         request, form_entry_id=None, feid=None, theme=None,
         template_name="db_store/savedformdataentry_detail.html"):
     if request.method == "GET":
-        entries = SavedFormDataEntry.objects.get(form_entry__id=form_entry_id, id=feid)
+        entries = SavedFormDataEntry.objects.get(form_entry_id=form_entry_id, id=feid)
         print(entries.id)
-        comments = Comments.objects.filter(form_entry__id=form_entry_id)
+        comments = Comments.objects.filter(ident=entries.id)
         form = CommentForm()
-        context = {'entry': entries, "comments": comments, "form":form}
+        context = {'entry': entries, "comments": comments, "form":form, "comment_id":feid}
 
 
         if theme:
@@ -90,12 +90,14 @@ def saved_form_data_entries_detailview(
         form = CommentForm(request.POST)
         entries = SavedFormDataEntry.objects.get(form_entry__id=form_entry_id, id=feid)
         print(entries.id)
-        comments = Comments.objects.filter(form_entry__id=form_entry_id)
+        print(type(entries.id))
+        comments = Comments.objects.filter(ident=entries.id)
         context = {'entry': entries, "comments": comments}
         if form.is_valid():
             comment = form.save(commit=False)
             comment.form_entry = entries.form_entry
             comment.created_by = UserProfile.objects.get(user=request.user)
+            comment.ident = feid
             comment.save()
             if theme:
                 context.update({'fobi_theme': theme})

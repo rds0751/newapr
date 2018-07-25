@@ -151,6 +151,7 @@ class Comments(models.Model):
         on_delete=models.CASCADE
     )
     created_by = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    ident = models.IntegerField(max_length=100, null=True, blank=True)
     def __str__(self):
         return self.comment
 
