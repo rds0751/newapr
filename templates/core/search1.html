@@ -54,9 +54,10 @@ Give Unique Application ID to find the status.<br/>
         <div>
           <h2 id="form_elements">Application Status</h2>
         </div>
-                    <p>{{ results.form_entry.name }}</p>
-               <div>{{ results.formatted_saved_data|safe }}</div>
+
                 {% for result in results %}
+                    <p>{{ result.form_entry.name }}</p>
+                    <div>{{ result.formatted_saved_data|safe }}</div>
                     {% if result.approved %}
                         <p style="color: green">Approval status :Approved</p>
                     {% elif result.disapproved %}
