@@ -56,14 +56,16 @@ Give Unique Application ID to find the status.<br/>
         </div>
                     <p>{{ results.form_entry.name }}</p>
                <div>{{ results.formatted_saved_data|safe }}</div>
-                {% if results.approved %}
-                <p style="color: green">Approval status :Approved</p>
-          {% elif results.disapproved %}
-          <p style="color: red">Approval status : Not approved</p>
-        {% else %}
-        <h4 style="color: orange">Approval status : Waiting</h4>
-          <a href=""></a>
-{% endif %}
+                {% for result in results %}
+                    {% if result.approved %}
+                        <p style="color: green">Approval status :Approved</p>
+                    {% elif result.disapproved %}
+                        <p style="color: red">Approval status : Not approved</p>
+                    {% else %}
+                        <h4 style="color: orange">Approval status : Waiting</h4>
+                        <a href=""></a>
+                    {% endif %}
+                {% endfor %}
     </div>
     </div>
 {% else %}

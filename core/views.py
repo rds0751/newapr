@@ -47,13 +47,15 @@ def results(request):
 def search1(request):
     if request.method == 'GET':
         query= request.GET.get('q')
+        print(query)
 
         submitbutton= request.GET.get('submit')
 
         if query is not None:
             lookups= Q(application_id=query)
 
-            results= SavedFormDataEntry.objects.filter(lookups).distinct()
+            results= SavedFormDataEntry.objects.filter(application_id=query).distinct()
+            print(results)
 
             context={'results': results,
                      'submitbutton': submitbutton}
