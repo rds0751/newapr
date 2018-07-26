@@ -53,7 +53,7 @@ class BaseSavedFormDataEntryAdmin(admin.ModelAdmin):
 
 # *****************************************************************************
 # **************************** Form handler ***********************************
-# *****************************************************************************
+# ***************************************************************************** 
 
 
 class SavedFormDataEntryAdmin(BaseSavedFormDataEntryAdmin):
@@ -61,10 +61,11 @@ class SavedFormDataEntryAdmin(BaseSavedFormDataEntryAdmin):
 
     list_display = ('form_entry', 'user', 'formatted_saved_data', 'created',)
     list_filter = ('form_entry', 'user',)
+    filter_horizontal = ('approved_by', 'disapproved_by',)
     readonly_fields = ('created', 'formatted_saved_data')
     fieldsets = (
         (None, {
-            'fields': ('form_entry', 'user',)
+            'fields': ('form_entry', 'user', 'approved_by', 'disapproved_by',)
         }),
         (_("Data"), {
             'fields': ('formatted_saved_data', 'created',)

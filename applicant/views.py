@@ -118,12 +118,12 @@ def applicant_dashboard(
 
     entries = SavedFormDataEntry._default_manager\
         .select_related('form_entry') \
-        .filter(submitted_by__exact=request.user)
+        .filter()
     print('applicant')
     print(request.user)
 
     if form_entry_id:
-        entries = entries.filter()
+        entries = entries.filter(submitted_by__exact=request.user)
 
     context = {'entries': entries, 'form_entry_id': form_entry_id}
 
