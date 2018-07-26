@@ -42,9 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    'markup_deprecated',
-    'simpletickets',
-    'django_forms_bootstrap',
     # ...
     # `django-fobi` core
     'fobi',

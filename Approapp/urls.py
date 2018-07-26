@@ -27,7 +27,6 @@ urlpatterns = [
 	url(r'^fobi/', include('fobi.urls.view')),
     url(r'^applicant/', include('applicant.urls')),
     url(r'^executive/', include('executive.urls')),
-    url(r'^ticket/', include('simpletickets.urls', namespace="todo")),
 
 	# Edit URLs
 	url(r'^fobi/', include('fobi.urls.edit')),

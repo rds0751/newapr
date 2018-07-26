@@ -1,8 +1,8 @@
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 # Create your views here.
-from applicant.models import Document, Ticket
-from applicant.forms import DocumentForm, VerificationForm, TicketForm
+from applicant.models import Document, Post
+from applicant.forms import DocumentForm, VerificationForm, PostForm
 
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext
@@ -11,6 +11,7 @@ from django.utils import timezone
 # from fobi.decorators import permissions_required, SATISFY_ALL, SATISFY_ANY
 from django.views.generic import DetailView
 from requests import post
+from django.core.paginator import Paginator
 
 from core.models import UserProfile
 from fobi.contrib.plugins.form_handlers.db_store.forms import CommentForm
@@ -30,9 +31,40 @@ if versions.DJANGO_GTE_1_10:
 else:
     from django.shortcuts import render_to_response
 
+def post_list(request):
+    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
+    page = request.GET.get('page', 1)
+
+    paginator = Paginator(posts, 10)
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
+    return render(request, 'blog/post_list.html', {'posts':posts})
+
+def post_detail(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    return render(request, 'blog/post_detail.html', {'post': post})
+
 def post_new(request):
     if request.method == "POST":
-        form = TicketForm(request.POST)
+       form = PostForm(request.POST)
+       if form.is_valid():
+           post = form.save(commit=False)
+           post.author = request.user
+           post.published_date = timezone.now()
+           post.save()
+           return redirect('post_detail', pk=post.pk)
+    else:
+        form = PostForm()
+    return render(request, 'blog/post_edit.html', {'form': form})
+
+def post_edit(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == "POST":
+        form = PostForm(request.POST, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
@@ -40,12 +72,8 @@ def post_new(request):
             post.save()
             return redirect('post_detail', pk=post.pk)
     else:
-        form = TicketForm()
-    return render(request, 'applicant/ticket/post_edit.html', {'form': form})
-
-def post_detail(request):
-    post = Ticket.objects.filter(author = request.user)
-    return render(request, 'applicant/ticket/post_detail.html', { 'post': post })
+        form = PostForm(instance=post)
+    return render(request, 'blog/post_edit.html', {'form': form})
 
 
 def home(request):

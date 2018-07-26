@@ -151,21 +151,21 @@ class Comments(models.Model):
         on_delete=models.CASCADE
     )
     created_by = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
-    ident = models.IntegerField(max_length=100, null=True, blank=True)
+    ident = models.IntegerField(null=True, blank=True)
     def __str__(self):
         return self.comment
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+class Approvals(models.Model):
+    approved_by = models.ManyToManyField(User, verbose_name=_("approvers"), related_name='approved_by',
+                                   blank=True, limit_choices_to={'rio': "executive"})
+    disapproved_by = models.ManyToManyField(User, verbose_name=_("disapprovers"), related_name='disapproved_by',
+                                   blank=True, limit_choices_to={'rio': "executive"})
+    form_entry = models.ForeignKey(
+        'fobi.FormEntry',
+        verbose_name=_("Form"),
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE
+    )
+    date = models.DateTimeField(auto_now=False, auto_now_add=True)
 

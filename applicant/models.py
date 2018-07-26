@@ -12,14 +12,13 @@ class Document(models.Model):
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
 
-class Ticket(models.Model):
-    author = models.ForeignKey('auth.User', on_delete=models.CASCADE, related_name='haw')
+class Post(models.Model):
+    author = models.ForeignKey('auth.User')
     title = models.CharField(max_length=200)
     text = models.TextField()
-    created_date = models.DateTimeField(
-            default=timezone.now)
-    published_date = models.DateTimeField(
-            blank=True, null=True)
+    email = models.EmailField(max_length=50, null=True)
+    created_date = models.DateTimeField(default=timezone.now)
+    published_date = models.DateTimeField(blank=True, null=True)
 
     def publish(self):
         self.published_date = timezone.now()

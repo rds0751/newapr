@@ -3,15 +3,13 @@ from django.contrib.auth.models import User
 
 from applicant.models import Document
 from core.models import UserProfile
-from .models import Ticket
+from .models import Post
 
 
-
-class TicketForm(forms.ModelForm):
-
+class PostForm(forms.ModelForm):
     class Meta:
-        model = Ticket
-        fields = ('title', 'text',)
+        model = Post
+        fields = ('title', 'text', 'email',)
 
 
 class DocumentForm(forms.ModelForm):
