@@ -105,6 +105,10 @@ class SavedFormDataEntry(AbstractSavedFormDataEntry):
     submitted_by = models.OneToOneField(User, null=True, blank=True, related_name='submitted_by')
     disapproved = models.BooleanField(default = False)
     application_id = models.CharField(max_length=6, null=False, default=pkgen())
+    approved_by = models.ManyToManyField(UserProfile, verbose_name=_("approvers"), related_name='approved_by',
+                                   blank=True, limit_choices_to={'rio': "executive"})
+    disapproved_by = models.ManyToManyField(UserProfile, verbose_name=_("disapprovers"), related_name='disapproved_by',
+                                   blank=True, limit_choices_to={'rio': "executive"})
     class Meta(object):
         """Meta options."""
 
@@ -155,17 +159,5 @@ class Comments(models.Model):
     def __str__(self):
         return self.comment
 
-class Approvals(models.Model):
-    approved_by = models.ManyToManyField(User, verbose_name=_("approvers"), related_name='approved_by',
-                                   blank=True, limit_choices_to={'rio': "executive"})
-    disapproved_by = models.ManyToManyField(User, verbose_name=_("disapprovers"), related_name='disapproved_by',
-                                   blank=True, limit_choices_to={'rio': "executive"})
-    form_entry = models.ForeignKey(
-        'fobi.FormEntry',
-        verbose_name=_("Form"),
-        null=True,
-        blank=True,
-        on_delete=models.CASCADE
-    )
-    date = models.DateTimeField(auto_now=False, auto_now_add=True)
+
 

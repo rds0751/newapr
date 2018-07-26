@@ -386,10 +386,11 @@ def create_form_entry(request, theme=None, template_name=None):
     if request.method == 'POST':
         form = FormEntryForm(request.POST, request.FILES, request=request)
         if form.is_valid():
-            form_entry = form.save_m2m(commit=False)
+            form_entry = form.save(commit=False)
             form_entry.user = request.user
+            form.save()
+            form.save_m2m()
             try:
-                form_entry.save_m2m()
                 messages.info(
                     request,
                     ugettext('Form {0} was created successfully.').format(
@@ -482,7 +483,7 @@ def edit_form_entry(request, form_entry_id, theme=None, template_name=None):
             # errors here.
             try:
                 if form_element_entry_formset.is_valid():
-                    form_element_entry_formset.save_m2m()
+                    form_element_entry_formset.save()
                     messages.info(
                         request,
                         _("Elements ordering edited successfully.")
@@ -508,10 +509,11 @@ def edit_form_entry(request, form_entry_id, theme=None, template_name=None):
             )
 
         if form.is_valid():
-            obj = form.save_m2m(commit=False)
+            obj = form.save(commit=False)
             obj.user = request.user
+            form.save()
+            form.save_m2m()
             try:
-                obj.save_m2m()
                 messages.info(
                     request,
                     ugettext('Form {0} was edited successfully.').format(
