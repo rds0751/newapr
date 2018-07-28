@@ -116,13 +116,13 @@ class FormEntryForm(forms.ModelForm):
             attrs={'class': theme.form_element_html_class}
         )
 
-        CHOICES = []
+        '''CHOICES = []
         us = UserProfile.objects.filter(rio='executive')
         for i,j in zip(range(1,10), us):
             CHOICES.append([i,j])
         self.fields['approvers'].widget = forms.widgets.CheckboxSelectMultiple( choices=CHOICES,
             attrs={'class': theme.form_element_html_class}
-        )
+        )'''
 
         self.fields['success_page_title'].widget = forms.widgets.TextInput(
             attrs={'class': theme.form_element_html_class}
