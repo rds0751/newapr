@@ -1055,5 +1055,12 @@ http://www.templatemo.com/tm-509-hydro
       position: relative;
       bottom: 6em;
     }
+    .cenimg {
+        margin-top: 3%;
+        margin-left: 4%;
+        width: 50%;
+        display: block;
+
+    }
     
   }
