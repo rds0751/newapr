@@ -50,14 +50,14 @@ __all__ = (
 def approve_form_entry(request, form_entry_id=None, feid=None):
     entries = SavedFormDataEntry.objects.get(form_entry__id=form_entry_id, id=feid)
     entries.approved = True
-    entries.approved_by = request.user.first_name
+    entries.approved_by.add(request.user.userprofile)
     entries.save()
     return redirect('savedformentry-detail', form_entry_id=form_entry_id, feid=feid)
 
 def disapprove_form_entry(request, form_entry_id=None, feid=None):
     entries = SavedFormDataEntry.objects.get(form_entry__id=form_entry_id, id=feid)
     entries.disapproved = True
-    entries.disapproved_by = request.user.first_name
+    entries.disapproved_by.add(request.user.userprofile)
     entries.save()
     return redirect('savedformentry-detail', form_entry_id=form_entry_id, feid=feid)
 

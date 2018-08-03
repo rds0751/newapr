@@ -105,9 +105,9 @@ class SavedFormDataEntry(AbstractSavedFormDataEntry):
     submitted_by = models.OneToOneField(User, null=True, blank=True, related_name='submitted_by')
     disapproved = models.BooleanField(default = False)
     application_id = models.CharField(max_length=6, null=False, default=pkgen())
-    approved_by = models.ManyToManyField(UserProfile, verbose_name=_("approvers"), related_name='approved_by',
+    approved_by = models.ManyToManyField(UserProfile, related_name='approved_by',
                                    blank=True, limit_choices_to={'rio': "executive"})
-    disapproved_by = models.ManyToManyField(UserProfile, verbose_name=_("disapprovers"), related_name='disapproved_by',
+    disapproved_by = models.ManyToManyField(UserProfile, related_name='disapproved_by',
                                    blank=True, limit_choices_to={'rio': "executive"})
     class Meta(object):
         """Meta options."""
