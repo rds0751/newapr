@@ -2,9 +2,14 @@ from django.contrib.auth.forms import UserChangeForm
 from django.contrib.auth.models import User
 from django.shortcuts import redirect,render
 from core.forms import RegistrationForm
-from django.template import RequestContext
-from django.shortcuts import render_to_response
 from django.db.models import Q
+import os
+from django.conf import settings
+from django.http import HttpResponse
+from django.template import Context
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+
 # Create your views here.
 from fobi.contrib.plugins.form_handlers.db_store.models import SavedFormDataEntry
 from .models import UserProfile 
@@ -127,3 +132,5 @@ def profile_edit(request):
         form=UserChangeForm(instance=request.user)
         args={'form':form}
         return render(request,'core/edit.html',args)
+
+

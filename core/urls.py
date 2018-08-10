@@ -34,4 +34,5 @@ urlpatterns = [
     url(r'^profile/', views.profile_view, name='profile_view'),
     url(r'^profile/edit/$', views.profile_edit, name='profile_edit'),
     url(r'^verify/', views.search1, name="search"),
+    #url(r'^convert/', views.render_pdf_view, name="render_pdf_view"),
 ]
